@@ -1,0 +1,292 @@
+.sidebar {
+    width: 230px;
+    height: calc(100vh - 70px);
+    position: sticky;
+    top: 0;
+
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    backdrop-filter: blur(5px);
+
+    /* Додаємо overflow: hidden, щоб сховані елементи не вилазили */
+    overflow: hidden;
+    padding: 14px 24px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    /* Плавна анімація ширини та відступів */
+    transition: width 0.3s ease, padding 0.3s ease;
+}
+
+/* === NAVIGATION === */
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.nav-link {
+    display: flex;
+    /* Змінив Grid на Flex для кращого контролю при згортанні */
+    align-items: center;
+    gap: 12px;
+
+    padding: 10px;
+    border-radius: 3px;
+
+    color: var(--menu-text-default);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+
+    transition: var(--transition-default);
+    text-decoration: none;
+    white-space: nowrap;
+    /* Щоб текст не переносився */
+}
+
+/* --- ICON MASK SYSTEM --- */
+.nav-icon {
+    width: 19px;
+    height: 19px;
+    min-width: 19px;
+    /* Фіксуємо ширину, щоб іконку не стискало */
+    display: block;
+    background-color: var(--menu-text-default);
+    -webkit-mask-image: var(--icon-url);
+    mask-image: var(--icon-url);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    transition: background-color var(--transition-default);
+}
+
+.nav-text {
+    transition: opacity 0.2s ease, width 0.2s ease;
+    opacity: 1;
+}
+
+/* --- STATES (Hover & Active) --- */
+.nav-link:hover {
+    background-color: var(--menu-bg-hover);
+    color: var(--menu-text-hover);
+}
+
+.nav-link:hover .nav-icon {
+    background-color: var(--menu-text-hover);
+}
+
+.nav-link.active {
+    background-color: var(--menu-bg-active);
+    color: var(--menu-text-active);
+}
+
+.nav-link.active .nav-icon {
+    background-color: var(--menu-text-active);
+}
+
+/* === WORKSPACE / FOOTER === */
+.sidebar__footer {
+    margin-top: auto;
+}
+
+.workspace-label {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 100%;
+    text-transform: uppercase;
+    color: var(--menu-text-default);
+    margin-bottom: 8px;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+}
+
+.workspace-card {
+    background: #FFFFFF;
+    border: 1px solid var(--ws-border);
+    border-radius: 3px;
+    padding: 10px 9px;
+    transition: padding 0.3s ease;
+}
+
+.user-info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    transition: margin 0.3s ease;
+    /* Для анімації відступу при зникненні */
+}
+
+.user-avatar {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    /* Фіксуємо розмір */
+    border-radius: 1px;
+    object-fit: cover;
+    transition: margin 0.3s ease;
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    /* Анімація зникнення */
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.user-name {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 100%;
+    text-transform: capitalize;
+    color: var(--ws-name);
+    white-space: nowrap;
+}
+
+.user-role {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 100%;
+    color: var(--ws-role);
+    white-space: nowrap;
+}
+
+.user-email {
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 100%;
+    color: var(--ws-name);
+    white-space: nowrap;
+}
+
+/* Logout Button */
+.logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid var(--ws-btn-border);
+    border-radius: 3px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color var(--transition-fast), border-color 0.3s ease;
+    white-space: nowrap;
+}
+
+.logout-btn:hover {
+    background-color: #F5F5F5;
+}
+
+.logout-icon {
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    background-color: var(--ws-btn-text);
+    -webkit-mask-image: var(--icon-url);
+    mask-image: var(--icon-url);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.logout-text {
+    margin-left: 12px;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    color: var(--ws-btn-text);
+    transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+/* =========================================
+   === COLLAPSED STATE (ЗГОРНУТИЙ) ===
+   ========================================= */
+
+.sidebar.collapsed {
+    width: 60px;
+    /* Ширина згорнутого (45px аватар + падінги) */
+    padding: 14px 10px;
+    /* Зменшуємо бокові падінги */
+}
+
+/* 1. Ховаємо тексти навігації */
+.sidebar.collapsed .nav-text {
+    opacity: 0;
+    width: 0;
+    visibility: hidden;
+    display: none;
+}
+
+.sidebar.collapsed .nav-link {
+    justify-content: center;
+    /* Центруємо іконку */
+    padding: 10px 0;
+    /* Прибираємо боковий падінг посилання */
+}
+
+/* 2. Ховаємо Workspace Label */
+.sidebar.collapsed .workspace-label {
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+}
+
+.sidebar.collapsed .workspace-card {
+    padding: 5px;
+}
+
+.sidebar.collapsed .user-avatar {
+    width: 100%;
+    height: auto;
+    min-width: unset;
+    max-width: 45px;
+}
+
+/* 3. Адаптуємо картку юзера */
+.sidebar.collapsed .user-details {
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    transform: translateX(-10px);
+    /* Легкий зсув при зникненні */
+    position: absolute;
+    /* Вириваємо з потоку, щоб не займав місце */
+}
+
+.sidebar.collapsed .user-info-row {
+    justify-content: center;
+    /* Аватар по центру */
+    margin-bottom: 10px;
+    /* Відступ до кнопки логаут */
+    gap: 0;
+}
+
+/* 4. Кнопка Logout */
+.sidebar.collapsed .logout-text {
+    opacity: 0;
+    width: 0;
+    margin-left: 0;
+    visibility: hidden;
+}
+
+.sidebar.collapsed .logout-btn {
+    justify-content: center;
+    /* Іконка по центру */
+    padding: 8px 0;
+    border-color: transparent;
+    /* Можна прибрати рамку, якщо хочеш мінімалізму, або лишити */
+}

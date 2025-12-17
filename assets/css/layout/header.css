@@ -1,0 +1,167 @@
+/* Анімація для дзвіночка */
+@keyframes bell-ring {
+    0% {
+        transform: rotate(0);
+    }
+
+    10% {
+        transform: rotate(15deg);
+    }
+
+    20% {
+        transform: rotate(-10deg);
+    }
+
+    30% {
+        transform: rotate(10deg);
+    }
+
+    40% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(0);
+    }
+
+    100% {
+        transform: rotate(0);
+    }
+}
+
+.header {
+    height: 70px;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-gray-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* Відступи: зліва 24, праворуч 40 */
+    padding: 0 40px 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* === LEFT SIDE === */
+.header__left {
+    display: flex;
+    align-items: center;
+}
+
+.logo__img {
+    width: 180px;
+    height: auto;
+    display: block;
+    /* Прибираємо зайві відступи зображення */
+}
+
+.header__toggle {
+    /* Від логотипу до кнопки 40px */
+    margin-left: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-default);
+}
+
+.header__toggle:hover {
+    opacity: 0.7;
+}
+
+/* === RIGHT SIDE === */
+.header__right {
+    display: flex;
+    align-items: center;
+}
+
+/* Balance */
+.header__balance {
+    display: flex;
+    align-items: center;
+    /* Від іконки до тексту 5px */
+    gap: 5px;
+    color: var(--color-black-text);
+}
+
+.balance-icon {
+    width: 17px;
+    height: auto;
+}
+
+.balance-text {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    /* leading-trim поки не має широкої підтримки, використовуємо lh 100% */
+    letter-spacing: 0%;
+    color: var(--color-green-main);
+}
+
+/* Buy More Button */
+.header__buy-btn {
+    /* Відступ від балансу 12px */
+    margin-left: 12px;
+
+    /* Фон #52BA60 з прозорістю 20% */
+    background-color: rgba(82, 186, 96, 0.2);
+    color: var(--color-green-main);
+
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 100%;
+    letter-spacing: 0%;
+
+    /* Padding 8px 14px */
+    padding: 8px 14px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.header__buy-btn:hover {
+    background-color: var(--color-green-main);
+    color: var(--color-white);
+}
+
+/* Notification */
+.header__notification {
+    /* Відступ від кнопки 32px */
+    margin-left: 32px;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-icon {
+    width: 15px;
+    height: auto;
+    transition: var(--transition-default);
+}
+
+.header__notification:hover .notification-icon {
+    animation: bell-ring 1s ease infinite;
+}
+
+.notification-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-yellow-warning);
+    border-radius: 50%;
+
+    /* зліва 100%, згори 0 */
+    left: 100%;
+    top: 0;
+    /* Якщо кружок виглядає занадто далеко, можна додати margin-left: -2px, але роблю точно по ТЗ */
+}

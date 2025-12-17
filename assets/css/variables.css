@@ -1,0 +1,72 @@
+:root {
+    /* === Colors === */
+
+    /* Greens (Primary & Accents) */
+    --color-green-main: #159C2A;
+    --color-green-light: #52BA60;
+    --color-green-bright: #1BB21B;
+    --color-green-lime: #59AF1F;
+    --color-green-pale: #90E358;
+    --color-green-dark: #0D661A;
+    --color-green-soft: #A1D7AA;
+
+    /* Grayscale & Text */
+    --color-white: #FFFFFF;
+    --color-black-text: #232323;
+    --color-gray-dark: #808080;
+    --color-gray-medium: #898989;
+    --color-gray-light: #D2DAD2;
+    --color-gray-bg: #CACACA;
+
+    /* Background Gradient */
+    --bg-body: linear-gradient(110.83deg, rgba(21, 156, 42, 0.12) 1.08%, rgba(21, 156, 42, 0.036) 98.87%);
+
+    /* Sidebar Colors */
+    --sidebar-bg: rgba(255, 255, 255, 0.7);
+    --sidebar-border: var(--color-gray-light);
+
+    /* Menu Item Colors */
+    --menu-text-default: rgba(35, 35, 35, 0.75);
+    --menu-bg-hover: #DCF0DF;
+    --menu-text-hover: var(--color-green-main);
+    --menu-bg-active: var(--color-green-main);
+    --menu-text-active: var(--color-white);
+
+    /* Workspace Colors */
+    --ws-border: var(--color-gray-light);
+    --ws-name: var(--color-green-main);
+    --ws-role: var(--color-gray-medium);
+    --ws-btn-border: rgba(35, 35, 35, 0.75);
+    --ws-btn-text: rgba(35, 35, 35, 0.8);
+
+    /* Functional / Status Colors */
+    --color-red-alert: #FF3C00;
+    --color-blue-link: #4181ED;
+    --color-yellow-warning: #FFBE06;
+    --color-orange-accent: #EB9B00;
+    --color-yellow-pale: #FEFAD3;
+    --color-blue-soft: #9ABAD7;
+
+    /* === Fonts === */
+    --font-main: 'Urbanist', sans-serif;
+
+    /* === Transitions === */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s ease-in-out;
+
+    /* === Font Weights === */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* === Sizes === */
+    --header-height: 70px;
+    --sidebar-width: 230px;
+    --sidebar-width-collapsed: 80px;
+    --content-min-width: 1024px;
+    --content-max-width: 1920px;
+
+    /* === Transitions === */
+    --transition-default: all 0.3s ease;
+}
