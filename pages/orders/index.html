@@ -103,9 +103,92 @@
 
         <main class="main-content layout__main">
             <div class="page-container">
+                <h1 class="page-title">Orders</h1>
+
+                <div style="margin-bottom: 20px; display: flex; justify-content: flex-end;">
+                    <button class="btn" id="btnExport" disabled
+                        style="background: white; border: 1px solid #D2DAD2; color: #232323; opacity: 0.5; cursor: not-allowed; display: flex; align-items: center; gap: 8px;">
+                        Export <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor">
+                            <path d="M1 1L5 5L9 1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="data-table">
+                    <div class="data-table__header">
+                        <div class="data-table__cell data-table__cell--checkbox">
+                            <div class="checkbox-item" id="checkAll"><input type="checkbox"
+                                    class="checkbox-item__input"></div>
+                        </div>
+                        <div class="data-table__cell">Order Date</div>
+                        <div class="data-table__cell">Order Name</div>
+                        <div class="data-table__cell">Order Details</div>
+                        <div class="data-table__cell">Quantity</div>
+                        <div class="data-table__cell">Status</div>
+                        <div class="data-table__cell data-table__cell--actions">Action</div>
+                    </div>
+
+                    <div class="data-table__body" id="tableBody">
+                        <div class="data-table__row" data-id="ord_001">
+                            <div class="data-table__cell data-table__cell--checkbox">
+                                <div class="checkbox-item row-checkbox"><input type="checkbox"
+                                        class="checkbox-item__input"></div>
+                            </div>
+                            <div class="data-table__cell">12/17/2025</div>
+                            <div class="data-table__cell">Live Leads</div>
+                            <div class="data-table__cell">$350K+ revenue, 3+ years TIB</div>
+                            <div class="data-table__cell">250</div>
+                            <div class="data-table__cell">
+                                <div class="status-wrapper">
+                                    <span class="status-badge status-badge--active">ACTIVE</span>
+                                    <button class="btn-edit-status">
+                                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#808080"
+                                            stroke-width="2">
+                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="data-table__cell data-table__cell--actions">
+                                <div class="custom-dropdown action-dropdown">
+                                    <button class="btn-actions dropdown-trigger">...</button>
+                                    <div class="dropdown-menu" style="right: 0; width: 120px;">
+                                        <div class="dropdown-option" data-value="edit"><span
+                                                class="option-text">Edit</span></div>
+                                        <div class="dropdown-option" data-value="delete" style="color: #FF3C00;"><span
+                                                class="option-text">Delete</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </main>
 
+    </div>
+
+    <div class="status-modal" id="statusModal">
+        <div class="status-modal__window">
+            <div class="status-modal__header">
+                <h3 class="status-modal__title">Edit Status</h3>
+                <button class="status-modal__close" id="modalCloseX">&times;</button>
+            </div>
+            <div class="status-modal__body">
+                <label class="status-modal__label">Select New Status</label>
+                <select class="status-modal__select" id="statusSelect">
+                    <option value="ACTIVE">ACTIVE</option>
+                    <option value="PLANNED">PLANNED</option>
+                    <option value="COMPLETE">COMPLETE</option>
+                </select>
+            </div>
+            <div class="status-modal__footer">
+                <button class="status-modal__btn status-modal__btn--cancel" id="modalCancel">Cancel</button>
+                <button class="status-modal__btn status-modal__btn--save" id="modalSave">Save</button>
+            </div>
+        </div>
     </div>
 
     <script src="../../assets/js/core.js"></script>

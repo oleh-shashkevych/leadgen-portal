@@ -1,21 +1,4 @@
 /* Specific Layout for Lead Marketplace */
-
-/* Паддінг сторінки: 36 30 30 45 */
-.page-container {
-    padding: 36px 30px 30px 45px;
-}
-
-/* Заголовок сторінки */
-.page-title {
-    font-family: 'Urbanist', sans-serif;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 100%;
-    color: var(--color-black-text);
-    margin-bottom: 30px;
-    /* Відступ вниз 30px */
-}
-
 /* Wrapper для контролів (tabs + right block) */
 .marketplace-controls {
     display: flex;

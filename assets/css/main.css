@@ -4,6 +4,8 @@
 /* Підключення блоків */
 @import 'components/buttons.css';
 @import 'components/filters.css';
+@import 'components/table.css';
+@import 'components/modal.css';
 @import 'layout/header.css';
 @import 'layout/sidebar.css';
 
@@ -29,4 +31,19 @@
     flex-direction: column;
     position: relative;
     transition: all var(--transition-smooth);
+}
+
+.page-container {
+    padding: 36px 30px 30px 45px;
+}
+
+/* Заголовок сторінки */
+.page-title {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    color: var(--color-black-text);
+    margin-bottom: 30px;
+    /* Відступ вниз 30px */
 }

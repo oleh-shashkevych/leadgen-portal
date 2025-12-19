@@ -1,0 +1,15 @@
+/* Локальні стилі для сторінки Order Details */
+
+/* Більше колонок, тому інший Grid */
+/* Checkbox | Bus. Name | Merch. Name | Email | Phone | Revenue | FICO | TIB | Status | Action */
+.data-table__header,
+.data-table__row {
+    grid-template-columns: 50px 1.5fr 1.5fr 2fr 1.5fr 1fr 60px 100px 140px 60px;
+    font-size: 13px;
+    /* Трохи менший шрифт, бо багато колонок */
+}
+
+/* Можна зменшити паддінги для цієї таблиці, якщо тісно */
+.data-table__cell {
+    padding: 12px 10px;
+}
