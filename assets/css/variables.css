@@ -69,4 +69,30 @@
 
     /* === Transitions === */
     --transition-default: all 0.3s ease;
+
+    /* === BADGE COLORS === */
+    /* Exclusive */
+    --badge-bg-exclusive: rgba(27, 178, 27, 0.2);
+    --badge-text-exclusive: var(--color-green-bright);
+
+    /* Hot */
+    --badge-bg-hot: rgba(255, 60, 0, 0.1);
+    --badge-text-hot: var(--color-red-alert);
+
+    /* New */
+    --badge-bg-new: rgba(65, 129, 237, 0.1);
+    --badge-text-new: var(--color-blue-link);
+
+    /* Sold Out */
+    --badge-bg-sold: rgba(128, 128, 128, 0.2);
+    --badge-text-sold: var(--color-gray-medium);
+
+    /* Inbound Calls */
+    --badge-bg-inbound: rgba(13, 102, 26, 0.2);
+    --badge-text-inbound: var(--color-green-dark);
+
+    /* Card Colors */
+    --card-text-primary: var(--color-black-text);
+    --card-text-secondary: rgba(35, 35, 35, 0.6);
+    --card-border: rgba(35, 35, 35, 0.6);
 }

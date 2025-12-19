@@ -1,0 +1,233 @@
+/* === FILTER TABS (Pills) === */
+.filter-tabs-wrapper {
+    display: inline-flex;
+    background-color: rgba(21, 156, 42, 0.15);
+    /* #159C2A26 */
+    border-radius: 3px;
+    padding: 3px;
+    gap: 11px;
+}
+
+.filter-tab {
+    height: 30px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    background-color: transparent;
+
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--color-black-text);
+
+    cursor: pointer;
+    transition: var(--transition-default);
+    white-space: nowrap;
+}
+
+.filter-tab:hover {
+    color: var(--color-green-main);
+}
+
+.filter-tab.active {
+    background-color: #FFFFFF;
+    border-color: #232323;
+    color: #232323;
+    cursor: default;
+}
+
+/* === SEARCH BAR === */
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex: 1 1 100%;
+    max-width: 500px;
+    /* Фіксована ширина або можна прибрати */
+}
+
+.search-input {
+    width: 100%;
+    height: 36px;
+    background-color: #FFFFFF;
+    border: 1px solid #D2DAD2;
+    border-radius: 3px;
+    padding: 3px 30px 3px 10px;
+    /* 30px праворуч для іконки */
+
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    color: #232323;
+    outline: none;
+    transition: border-color var(--transition-fast);
+}
+
+.search-input::placeholder {
+    color: rgba(128, 128, 128, 0.7);
+    /* #808080B2 */
+}
+
+.search-input:focus {
+    border-color: var(--color-green-main);
+}
+
+/* Іконка пошуку через маску для зміни кольору */
+.search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #808080;
+    /* Сірий за замовчуванням */
+    -webkit-mask-image: var(--icon-url);
+    mask-image: var(--icon-url);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    pointer-events: none;
+    transition: background-color var(--transition-fast);
+}
+
+/* При фокусі інпута змінюємо колір сусідньої іконки */
+.search-input:focus+.search-icon {
+    background-color: #000000;
+}
+
+/* === CUSTOM DROPDOWN === */
+.custom-dropdown {
+    position: relative;
+    font-family: var(--font-main);
+    background-color: var(--color-white);
+}
+
+.dropdown-trigger {
+    height: 36px;
+    background-color: transparent;
+    border: 1px solid #232323;
+    border-radius: 3px;
+    /* Вказано в загальному описі, хоча на скріні може бути інакше, робимо по ТЗ */
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.dropdown-trigger:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.dropdown-icon {
+    width: 14px;
+    height: 14px;
+    display: block;
+}
+
+.dropdown-chevron {
+    width: 12px;
+    height: 12px;
+    display: block;
+    margin-left: auto;
+    /* Якщо текст короткий, іконка не відлітає, але якщо треба притиснути - прибираємо */
+}
+
+.dropdown-text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 100%;
+    color: #232323;
+    white-space: nowrap;
+    min-width: 80px;
+}
+
+/* Dropdown Menu (Popup) */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    width: 200px;
+    /* Ширина випадаючого списку */
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 8px 0;
+    z-index: 50;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-fast);
+}
+
+.custom-dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Dropdown Option (Item) */
+.dropdown-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    user-select: none;
+}
+
+.dropdown-option:hover {
+    background-color: #F5F5F5;
+}
+
+/* Custom Checkbox styles */
+.option-checkbox {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #D2DAD2;
+    /* Сірий бордер */
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    background-color: #fff;
+}
+
+.dropdown-option.selected .option-checkbox {
+    background-color: #159C2A;
+    /* Зелений фон */
+    border-color: #159C2A;
+}
+
+/* Галочка (створюється через CSS) */
+.option-checkbox::after {
+    content: '';
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+    margin-bottom: 2px;
+    /* Корекція центрування */
+}
+
+.dropdown-option.selected .option-checkbox::after {
+    opacity: 1;
+}
+
+.option-text {
+    font-size: 14px;
+    color: #232323;
+}

@@ -1,1 +1,281 @@
-/* Styles for Lead Marketplace Page */
+/* Specific Layout for Lead Marketplace */
+
+/* Паддінг сторінки: 36 30 30 45 */
+.page-container {
+    padding: 36px 30px 30px 45px;
+}
+
+/* Заголовок сторінки */
+.page-title {
+    font-family: 'Urbanist', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 100%;
+    color: var(--color-black-text);
+    margin-bottom: 30px;
+    /* Відступ вниз 30px */
+}
+
+/* Wrapper для контролів (tabs + right block) */
+.marketplace-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* На випадок малого екрану */
+    gap: 24px;
+    /* Гап між блоками */
+    width: 100%;
+}
+
+/* Правий блок (Пошук + Дропдаун) */
+.controls-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1 1 100%;
+    justify-content: flex-end;
+}
+
+/* === LEADS GRID === */
+.leads-grid {
+    display: grid;
+    /* Адаптивна сітка: мінімум 260px, максимум 4 в ряд. 
+       При 1920px і бічній панелі 230px залишається ~1600px, 
+       тому 4 картки по ~380px стануть ідеально. */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+/* Анімація появи карток */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === LEAD CARD === */
+.lead-card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 5px 6px 0px #0000000D;
+    background-color: transparent;
+    /* Фон задається частинам */
+    overflow: hidden;
+    /* Щоб частини не вилазили за радіус */
+    transition: transform 0.2s ease;
+
+    animation: fadeIn 0.4s ease forwards;
+}
+
+/* --- PART 1: TOP --- */
+.lead-card__top {
+    background-color: #FFFFFF;
+    padding: 14px 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.lead-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+/* Badges Styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 8px;
+    border-radius: 3px;
+
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.badge--exclusive {
+    background-color: var(--badge-bg-exclusive);
+    color: var(--badge-text-exclusive);
+}
+
+.badge--new {
+    background-color: var(--badge-bg-new);
+    color: var(--badge-text-new);
+}
+
+.badge--sold {
+    background-color: var(--badge-bg-sold);
+    color: var(--badge-text-sold);
+}
+
+.badge--inbound {
+    background-color: var(--badge-bg-inbound);
+    color: var(--badge-text-inbound);
+}
+
+.badge--hot {
+    background-color: var(--badge-bg-hot);
+    color: var(--badge-text-hot);
+    gap: 4px;
+    /* Відступ для іконки вогника */
+}
+
+.badge-icon {
+    width: 7px;
+    height: auto;
+    display: block;
+}
+
+/* Titles */
+.lead-card__content {
+    text-align: start;
+}
+
+.lead-title {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1;
+    color: var(--card-text-primary);
+    margin-bottom: 5px;
+}
+
+.lead-subtitle {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--card-text-secondary);
+}
+
+/* --- PART 2: MIDDLE --- */
+.lead-card__middle {
+    background-color: #FFFFFF;
+    padding: 24px 17px 14px 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    /* Бордери згідно ТЗ */
+    border-top: 1px solid var(--card-border);
+    border-bottom: 1px solid var(--card-border);
+}
+
+/* Info Grid (2 columns: 10fr 9fr) */
+.info-grid {
+    display: grid;
+    grid-template-columns: 10fr 9fr;
+    column-gap: 30px;
+    row-gap: 24px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--card-text-secondary);
+    margin-bottom: 4px;
+}
+
+.info-value {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: var(--card-text-primary);
+}
+
+/* Verification Block */
+.verification {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.shield-icon {
+    width: 15px;
+    height: auto;
+}
+
+.verification-text {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 100%;
+    color: var(--color-green-main);
+    /* #159C2A */
+}
+
+/* Стан Sold Out (сірий щит і текст) */
+.lead-card--sold .verification-text {
+    color: #808080;
+}
+
+/* --- PART 3: BOTTOM --- */
+.lead-card__bottom {
+    background-color: rgba(255, 255, 255, 0.65);
+    /* #FFFFFFA6 */
+    padding: 17px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Текст по центру */
+}
+
+.price-main {
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1;
+    color: var(--card-text-primary);
+    margin-bottom: 2px;
+}
+
+.price-sub {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 100%;
+    color: rgba(35, 35, 35, 0.65);
+    /* #232323A6 */
+}
+
+/* Add to Cart Button */
+.btn-cart {
+    height: 30px;
+    padding: 5px 12px;
+    background-color: var(--color-green-main);
+    /* #159C2A */
+    border: none;
+
+    font-family: var(--font-main);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 100%;
+    color: #FFFFFF;
+
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+
+.btn-cart:hover {
+    background-color: var(--color-green-dark);
+}

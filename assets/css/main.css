@@ -2,9 +2,10 @@
 @import 'variables.css';
 @import 'reset.css';
 /* Підключення блоків */
+@import 'components/buttons.css';
+@import 'components/filters.css';
 @import 'layout/header.css';
 @import 'layout/sidebar.css';
-@import 'components/buttons.css';
 
 /* Блок Layout */
 .layout {
@@ -28,9 +29,4 @@
     flex-direction: column;
     position: relative;
     transition: all var(--transition-smooth);
-}
-
-.layout__page-content {
-    padding: 20px;
-    flex-grow: 1;
 }

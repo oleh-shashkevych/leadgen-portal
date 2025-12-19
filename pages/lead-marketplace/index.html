@@ -45,12 +45,12 @@
 
     <div class="layout">
 
-        <aside class="sidebar" id="sidebar">
+        <aside class="sidebar layout__sidebar" id="sidebar">
             <nav class="sidebar__nav">
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="#" class="nav-link active">
-                            <span class="nav-icon" style="--icon-url: url('../../assets/img/icons/house.svg');"></span>
+                            <span class="nav-icon" style="--icon-url: url('/../../assets/img/icons/house.svg');"></span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
@@ -58,14 +58,14 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <span class="nav-icon"
-                                style="--icon-url: url('../../assets/img/icons/list-with-check.svg');"></span>
+                                style="--icon-url: url('/../../assets/img/icons/list-with-check.svg');"></span>
                             <span class="nav-text">Orders</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <span class="nav-icon" style="--icon-url: url('../../assets/img/icons/graph.svg');"></span>
+                            <span class="nav-icon" style="--icon-url: url('/../../assets/img/icons/graph.svg');"></span>
                             <span class="nav-text">Analytics</span>
                         </a>
                     </li>
@@ -73,7 +73,7 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <span class="nav-icon"
-                                style="--icon-url: url('../../assets/img/icons/settings.svg');"></span>
+                                style="--icon-url: url('/../../assets/img/icons/settings.svg');"></span>
                             <span class="nav-text">Settings</span>
                         </a>
                     </li>
@@ -94,21 +94,445 @@
                     </div>
 
                     <button class="logout-btn">
-                        <span class="logout-icon" style="--icon-url: url('../../assets/img/icons/login.svg');"></span>
+                        <span class="logout-icon" style="--icon-url: url('/../../assets/img/icons/login.svg');"></span>
                         <span class="logout-text">Logout</span>
                     </button>
                 </div>
             </div>
         </aside>
 
-        <main class="main-content">
+        <main class="main-content layout__main">
             <div class="page-container">
+
+                <h1 class="page-title">Lead Marketplace</h1>
+
+                <div class="marketplace-controls">
+
+                    <div class="filter-tabs-wrapper" id="leadTabs">
+                        <button class="filter-tab active" data-filter="all">
+                            All Leads <span class="tab-count">(0)</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="recommended">
+                            Recommended <span class="tab-count">(0)</span>
+                        </button>
+
+                        <button class="filter-tab" data-filter="new">
+                            New <span class="tab-count">(0)</span>
+                        </button>
+                    </div>
+
+                    <div class="controls-right">
+
+                        <div class="search-wrapper">
+                            <input type="text" placeholder="Search" class="search-input">
+                            <span class="search-icon"
+                                style="--icon-url: url('/../../assets/img/icons/search.svg');"></span>
+                        </div>
+
+                        <div class="custom-dropdown" id="sortDropdown">
+                            <button class="dropdown-trigger">
+                                <img src="../../assets/img/icons/filter.svg" alt="" class="dropdown-icon">
+                                <span class="dropdown-text">Best Match</span>
+                                <img src="../../assets/img/icons/chevron-down.svg" alt="" class="dropdown-chevron">
+                            </button>
+
+                            <div class="dropdown-menu">
+                                <div class="dropdown-option selected" data-value="best_match">
+                                    <div class="option-checkbox"></div>
+                                    <span class="option-text">Best Match</span>
+                                </div>
+                                <div class="dropdown-option" data-value="all_leads">
+                                    <div class="option-checkbox"></div>
+                                    <span class="option-text">All Leads</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="leads-grid" id="leadsGrid">
+
+                    <div class="lead-card" data-categories="recommended">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--exclusive">Exclusive</span>
+                                <span class="badge badge--hot">
+                                    <img src="../../assets/img/icons/hot.svg" alt="" class="badge-icon">
+                                    Hot
+                                </span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">California Mortgage Refi</div>
+                                <div class="lead-subtitle">Cash-out refinance inquiries, 720+ FICO</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">CA (Los Angeles)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">Up to 24 hours</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">50 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Avg Loan</span>
+                                    <span class="info-value">$650k+</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">TCPA Compliant & Verified</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$2,500</span>
+                                <span class="price-sub">$50 / lead</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card" data-categories="new recommended">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--new">New</span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">Texas Solar Installation</div>
+                                <div class="lead-subtitle">Homeowners with electricity bill</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">TX (Austin/Dallas)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">2 Days</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">50 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Avg Loan</span>
+                                    <span class="info-value">650+</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">TrustedForm Certified</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$1,500</span>
+                                <span class="price-sub">$15 / lead</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card" data-categories="recommended">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--exclusive">Exclusive</span>
+                                <span class="badge badge--inbound">Inbound Calls</span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">Medicare Supplement (T65)</div>
+                                <div class="lead-subtitle">Inbound calls redirected to your number</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">CA (Los Angeles)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">500 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">10 Calls</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Duration</span>
+                                    <span class="info-value">Buffer 90s</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">TCPA Compliant & Verified</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$65</span>
+                                <span class="price-sub">per call</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card lead-card--sold" data-categories="others">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--sold">Sold Out</span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">Florida Life Insurance</div>
+                                <div class="lead-subtitle">Final Expense & Term Life inquiries</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">Florida (Statewide)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">500 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">50 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Avg Loan</span>
+                                    <span class="info-value">$650k+</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield-grey.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">Standard Verification</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$400</span>
+                                <span class="price-sub">$0.80 / lead</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card" data-categories="recommended">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--exclusive">Exclusive</span>
+                                <span class="badge badge--hot">
+                                    <img src="../../assets/img/icons/hot.svg" alt="" class="badge-icon">
+                                    Hot
+                                </span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">California Mortgage Refi</div>
+                                <div class="lead-subtitle">Cash-out refinance inquiries, 720+ FICO</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">CA (Los Angeles)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">Up to 24 hours</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">50 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Avg Loan</span>
+                                    <span class="info-value">$650k+</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">TCPA Compliant & Verified</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$2,500</span>
+                                <span class="price-sub">$50 / lead</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card" data-categories="new recommended">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--new">New</span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">Texas Solar Installation</div>
+                                <div class="lead-subtitle">Homeowners with electricity bill</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">TX (Austin/Dallas)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">2 Days</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">50 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Avg Loan</span>
+                                    <span class="info-value">650+</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">TrustedForm Certified</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$1,500</span>
+                                <span class="price-sub">$15 / lead</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card" data-categories="recommended">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--exclusive">Exclusive</span>
+                                <span class="badge badge--inbound">Inbound Calls</span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">Medicare Supplement (T65)</div>
+                                <div class="lead-subtitle">Inbound calls redirected to your number</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">CA (Los Angeles)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">500 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">10 Calls</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Duration</span>
+                                    <span class="info-value">Buffer 90s</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">TCPA Compliant & Verified</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$65</span>
+                                <span class="price-sub">per call</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="lead-card lead-card--sold" data-categories="others">
+                        <div class="lead-card__top">
+                            <div class="lead-card__header">
+                                <span class="badge badge--sold">Sold Out</span>
+                            </div>
+                            <div class="lead-card__content">
+                                <div class="lead-title">Florida Life Insurance</div>
+                                <div class="lead-subtitle">Final Expense & Term Life inquiries</div>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__middle">
+                            <div class="info-grid">
+                                <div class="info-item">
+                                    <span class="info-label">Location</span>
+                                    <span class="info-value">Florida (Statewide)</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Freshness</span>
+                                    <span class="info-value">500 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Quantity</span>
+                                    <span class="info-value">50 Leads</span>
+                                </div>
+                                <div class="info-item">
+                                    <span class="info-label">Avg Loan</span>
+                                    <span class="info-value">$650k+</span>
+                                </div>
+                            </div>
+                            <div class="verification">
+                                <img src="../../assets/img/icons/shield-grey.svg" alt="Verified" class="shield-icon">
+                                <span class="verification-text">Standard Verification</span>
+                            </div>
+                        </div>
+
+                        <div class="lead-card__bottom">
+                            <div class="price-block">
+                                <span class="price-main">$400</span>
+                                <span class="price-sub">$0.80 / lead</span>
+                            </div>
+                            <button class="btn-cart">Add to Cart</button>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
         </main>
 
     </div>
 
     <script src="../../assets/js/core.js"></script>
+    <script src="../../assets/js/ui.js"></script>
     <script src="script.js"></script>
 </body>
 
