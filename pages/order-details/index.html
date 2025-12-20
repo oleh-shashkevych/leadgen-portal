@@ -105,78 +105,233 @@
             <div class="page-container">
                 <h1 class="page-title">Orders Details</h1>
 
-                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
-                    <div class="search-wrapper" style="width: 300px;">
-                        <input type="text" placeholder="Search" class="search-input">
-                        <span class="search-icon" style="--icon-url: url('../../assets/img/icons/search.svg');"></span>
-                    </div>
-                    <button class="btn" id="btnExport" disabled
-                        style="background: white; border: 1px solid #D2DAD2; color: #232323; opacity: 0.5; cursor: not-allowed; display: flex; align-items: center; gap: 8px;">
-                        Export <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor">
-                            <path d="M1 1L5 5L9 1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </button>
-                </div>
-
-                <div class="data-table">
-                    <div class="data-table__header">
-                        <div class="data-table__cell data-table__cell--checkbox">
-                            <div class="checkbox-item" id="checkAll"><input type="checkbox"
-                                    class="checkbox-item__input"></div>
+                <div class="orders__wrapper">
+                    <div class="orders__wrapper-top">
+                        <div class="search-wrapper">
+                            <span class="search-icon"
+                                style="--icon-url: url('/../../assets/img/icons/search.svg');"></span>
+                            <input type="text" placeholder="Search" class="search-input">
                         </div>
-                        <div class="data-table__cell">Business Name</div>
-                        <div class="data-table__cell">Merchant's Name</div>
-                        <div class="data-table__cell">Email</div>
-                        <div class="data-table__cell">Phone</div>
-                        <div class="data-table__cell">Revenue</div>
-                        <div class="data-table__cell">FICO</div>
-                        <div class="data-table__cell">TIB</div>
-                        <div class="data-table__cell">Status</div>
-                        <div class="data-table__cell data-table__cell--actions">Actions</div>
                     </div>
 
-                    <div class="data-table__body" id="tableBody">
-                        <div class="data-table__row" data-id="dtl_101">
+                    <div class="data-table">
+                        <div class="data-table__header">
                             <div class="data-table__cell data-table__cell--checkbox">
-                                <div class="checkbox-item row-checkbox"><input type="checkbox"
+                                <div class="checkbox-item" id="checkAll"><input type="checkbox"
                                         class="checkbox-item__input"></div>
                             </div>
-                            <div class="data-table__cell">Company A</div>
-                            <div class="data-table__cell">Nataliya Baltsevych</div>
-                            <div class="data-table__cell">nataliya@gofundshop.com</div>
-                            <div class="data-table__cell">(234) 234-2333</div>
-                            <div class="data-table__cell">$45,000</div>
-                            <div class="data-table__cell">456</div>
-                            <div class="data-table__cell">2Y, 2M</div>
-                            <div class="data-table__cell">
-                                <div class="status-wrapper">
-                                    <span class="status-badge status-badge--prospect">PROSPECT</span>
-                                    <button class="btn-edit-status"><svg width="12" height="12" viewBox="0 0 24 24"
-                                            fill="none" stroke="#808080" stroke-width="2">
-                                            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                                        </svg></button>
-                                </div>
-                            </div>
-                            <div class="data-table__cell data-table__cell--actions">
-                                <div class="custom-dropdown action-dropdown">
-                                    <button class="btn-actions dropdown-trigger">...</button>
+                            <div class="data-table__cell">Business Name</div>
+                            <div class="data-table__cell">Merchant's Name</div>
+                            <div class="data-table__cell">Email</div>
+                            <div class="data-table__cell">Phone</div>
+                            <div class="data-table__cell">Monthly Revenue</div>
+                            <div class="data-table__cell">FICO</div>
+                            <div class="data-table__cell">TIB</div>
+                            <div class="data-table__cell">Status</div>
+                            <div class="data-table__cell data-table__cell--actions">Actions</div>
+                        </div>
 
-                                    <div class="dropdown-menu">
-                                        <div class="dropdown-option" data-action="edit">
-                                            <span class="option-text">Edit</span>
-                                        </div>
-                                        <div class="dropdown-option dropdown-option--delete" data-action="delete">
-                                            <span class="option-text">Delete</span>
+                        <div class="data-table__body" id="tableBody">
+
+                            <div class="data-table__row" data-id="dtl_101">
+                                <div class="data-table__cell data-table__cell--checkbox">
+                                    <div class="checkbox-item row-checkbox">
+                                        <input type="checkbox" class="checkbox-item__input">
+                                    </div>
+                                </div>
+                                <div class="data-table__cell">NovaTrade Solutions</div>
+                                <div class="data-table__cell">Daniel Carter</div>
+                                <div class="data-table__cell"><a
+                                        href="mailto:daniel.carter@novatrade.com">daniel.carter@novatrade.com</a></div>
+                                <div class="data-table__cell">+1 202 555 0149</div>
+                                <div class="data-table__cell">$45,000</div>
+                                <div class="data-table__cell">456</div>
+                                <div class="data-table__cell">2Y, 2M, 4D</div>
+                                <div class="data-table__cell data-table__cell--status">
+                                    <div class="status-wrapper">
+                                        <span class="status-badge status-badge--prospect">PROSPECT</span>
+                                        <button class="btn-edit-status">
+
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="data-table__cell data-table__cell--actions">
+                                    <div class="custom-dropdown action-dropdown">
+                                        <button
+                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option" data-action="edit"><span
+                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option dropdown-option--delete" data-action="delete">
+                                                <span class="option-text">Delete</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <div class="data-table__row" data-id="dtl_102">
+                                <div class="data-table__cell data-table__cell--checkbox">
+                                    <div class="checkbox-item row-checkbox">
+                                        <input type="checkbox" class="checkbox-item__input">
+                                    </div>
+                                </div>
+                                <div class="data-table__cell">GreenPath Logistics</div>
+                                <div class="data-table__cell">Oliver Thompson</div>
+                                <div class="data-table__cell"><a
+                                        href="mailto:oliver.t@skybridge.com">oliver.t@skybridge.com</a></div>
+                                <div class="data-table__cell">+1 415 555 9134</div>
+                                <div class="data-table__cell">$5,000</div>
+                                <div class="data-table__cell">232</div>
+                                <div class="data-table__cell">21Y, 3M, 1D</div>
+                                <div class="data-table__cell data-table__cell--status">
+                                    <div class="status-wrapper">
+                                        <span class="status-badge status-badge--approved">APPROVED</span>
+                                        <button class="btn-edit-status">
+
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="data-table__cell data-table__cell--actions">
+                                    <div class="custom-dropdown action-dropdown">
+                                        <button
+                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option" data-action="edit"><span
+                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option dropdown-option--delete" data-action="delete">
+                                                <span class="option-text">Delete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-table__row" data-id="dtl_103">
+                                <div class="data-table__cell data-table__cell--checkbox">
+                                    <div class="checkbox-item row-checkbox">
+                                        <input type="checkbox" class="checkbox-item__input">
+                                    </div>
+                                </div>
+                                <div class="data-table__cell">SkyBridge Consulting</div>
+                                <div class="data-table__cell">Daniel Carter</div>
+                                <div class="data-table__cell"><a
+                                        href="mailto:daniel.carter@novatrade.com">daniel.carter@novatrade.com</a></div>
+                                <div class="data-table__cell">+1 202 555 0149</div>
+                                <div class="data-table__cell">$1,100</div>
+                                <div class="data-table__cell">531</div>
+                                <div class="data-table__cell">1Y, 5M, 9D</div>
+                                <div class="data-table__cell data-table__cell--status">
+                                    <div class="status-wrapper">
+                                        <span class="status-badge status-badge--funded">FUNDED</span>
+                                        <button class="btn-edit-status">
+
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="data-table__cell data-table__cell--actions">
+                                    <div class="custom-dropdown action-dropdown">
+                                        <button
+                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option" data-action="edit"><span
+                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option dropdown-option--delete" data-action="delete">
+                                                <span class="option-text">Delete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-table__row" data-id="dtl_104">
+                                <div class="data-table__cell data-table__cell--checkbox">
+                                    <div class="checkbox-item row-checkbox">
+                                        <input type="checkbox" class="checkbox-item__input">
+                                    </div>
+                                </div>
+                                <div class="data-table__cell">BrightHive Marketing</div>
+                                <div class="data-table__cell">Emily Rogers</div>
+                                <div class="data-table__cell"><a
+                                        href="mailto:emily.rogers@brighthive.agency">emily.rogers@brighthive.agency</a>
+                                </div>
+                                <div class="data-table__cell">+1 202 555 0149</div>
+                                <div class="data-table__cell">$1,245,000</div>
+                                <div class="data-table__cell">45</div>
+                                <div class="data-table__cell">2M, 14D</div>
+                                <div class="data-table__cell data-table__cell--status">
+                                    <div class="status-wrapper">
+                                        <span class="status-badge status-badge--prospect">PROSPECT</span>
+                                        <button class="btn-edit-status">
+
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="data-table__cell data-table__cell--actions">
+                                    <div class="custom-dropdown action-dropdown">
+                                        <button
+                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option" data-action="edit"><span
+                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option dropdown-option--delete" data-action="delete">
+                                                <span class="option-text">Delete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-table__row" data-id="dtl_105">
+                                <div class="data-table__cell data-table__cell--checkbox">
+                                    <div class="checkbox-item row-checkbox">
+                                        <input type="checkbox" class="checkbox-item__input">
+                                    </div>
+                                </div>
+                                <div class="data-table__cell">Apex Financial Group</div>
+                                <div class="data-table__cell">James Walker</div>
+                                <div class="data-table__cell"><a
+                                        href="mailto:james.walker@apexfin.com">james.walker@apexfin.com</a></div>
+                                <div class="data-table__cell">+1 213 555 0284</div>
+                                <div class="data-table__cell">$429,000</div>
+                                <div class="data-table__cell">123</div>
+                                <div class="data-table__cell">11M, 8D</div>
+                                <div class="data-table__cell data-table__cell--status">
+                                    <div class="status-wrapper">
+                                        <span class="status-badge status-badge--funded">FUNDED</span>
+                                        <button class="btn-edit-status">
+
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="data-table__cell data-table__cell--actions">
+                                    <div class="custom-dropdown action-dropdown">
+                                        <button
+                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <div class="dropdown-menu">
+                                            <div class="dropdown-option" data-action="edit"><span
+                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option dropdown-option--delete" data-action="delete">
+                                                <span class="option-text">Delete</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="data-table__row data-table__row--total">
+                                <div class="data-table__cell">Total</div>
+                                <div class="data-table__cell">$2,231,312.00</div>
+                            </div>
+
                         </div>
                     </div>
+                    <div class="orders__wrapper-bottom">
+                        <button class="btn" id="btnExport" disabled style="opacity: 0.5; cursor: not-allowed;">
+                            Export
+                        </button>
+                    </div>
                 </div>
-
-                <div style="margin-top: 20px; font-weight: 600;">Total: $2,231,312.00</div>
             </div>
         </main>
 

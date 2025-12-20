@@ -58,6 +58,16 @@
     min-height: 40px;
 }
 
+.data-table__cell a {
+    text-decoration: underline;
+    color: inherit;
+    transition: var(--transition-default);
+}
+
+.data-table__cell a:hover {
+    color: var(--color-green-dark);
+}
+
 /* Checkbox Cell Wrapper (центрування) */
 .data-table__cell--checkbox {
     justify-content: center;
@@ -198,18 +208,18 @@
 }
 
 .status-badge--prospect {
-    background: #F5F5F5;
-    color: #757575;
+    background: #CACACA59;
+    color: var(--color-gray-medium);
 }
 
 .status-badge--approved {
-    background: #Dcedc8;
-    color: #33691E;
+    background: #90E35859;
+    color: var(--color-green-lime);
 }
 
 .status-badge--funded {
-    background: #81C784;
-    color: #FFFFFF;
+    background: var(--color-green-soft);
+    color: var(--color-green-dark);
 }
 
 /* Wrapper for Status + Edit */
