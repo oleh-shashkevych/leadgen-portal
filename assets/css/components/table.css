@@ -3,23 +3,20 @@
     display: flex;
     flex-direction: column;
     background: #FFFFFF;
-    border-radius: 8px;
-    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05);
-    overflow: hidden;
-    /* Щоб радіус працював */
     font-family: var(--font-main);
-    font-size: 14px;
+    font-size: 12px;
+    padding: 12px;
 }
 
 /* Header Row */
 .data-table__header {
     display: grid;
-    /* Grid задається локально для кожної сторінки */
     align-items: center;
-    background-color: #F4F6F8;
-    border-bottom: 1px solid #F0F0F0;
+    background-color: #9ABAD740;
     font-weight: 600;
-    color: var(--color-black-text);
+    color: #232323BF;
+    line-height: 14px;
+    border-radius: 3px;
 }
 
 /* Body Container */
@@ -31,50 +28,101 @@
 /* Row Item */
 .data-table__row {
     display: grid;
-    /* Такий самий Grid, як у хедера */
     align-items: center;
-    border-bottom: 1px solid #F0F0F0;
+    border-bottom: 1px solid #E8E9E8;
     transition: background-color var(--transition-fast);
-}
-
-.data-table__row:last-child {
-    border-bottom: none;
+    font-size: 12px;
+    color: #232323BF;
+    font-weight: 500;
 }
 
 .data-table__row:hover {
-    background-color: #FAFAFA;
+    background-color: #52BA6008;
 }
 
 /* Cell Item */
 .data-table__cell {
-    padding: 16px;
+    padding: 0 10px;
     display: flex;
     align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* white-space: nowrap; — за бажанням, якщо текст довгий */
+    min-height: 44px;
+}
+
+.data-table__cell--status {
+    overflow: unset;
+}
+
+.data-table__header .data-table__cell {
+    min-height: 40px;
 }
 
 /* Checkbox Cell Wrapper (центрування) */
 .data-table__cell--checkbox {
     justify-content: center;
-    padding: 16px 8px;
     /* Менші відступи */
 }
 
 /* Actions Cell Wrapper (центрування) */
 .data-table__cell--actions {
     justify-content: center;
-    overflow: visible;
-    /* Щоб дропдаун не обрізався */
+    overflow: visible !important;
+    position: relative;
+    z-index: 1;
+}
+
+.data-table__cell--actions:has(.custom-dropdown.open) {
+    z-index: 100;
+}
+
+.action-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.action-dropdown .dropdown-menu {
+    right: 0;
+    left: auto;
+    /* Щоб не вилазило вліво */
+    width: 140px;
+    margin-top: 4px;
+
+    /* Тінь та оформлення як на скріні */
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    border: 1px solid #EAEAEA;
+    border-radius: 6px;
+    padding: 6px 0;
+}
+
+.dropdown-option {
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    color: #232323;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-option:hover {
+    background-color: #F5F5F5;
+}
+
+.dropdown-option--delete {
+    color: #FF3C00 !important;
+}
+
+.dropdown-option--delete:hover {
+    background-color: rgba(255, 60, 0, 0.05);
 }
 
 /* === CHECKBOX COMPONENT (BEM) === */
 .checkbox-item {
-    width: 18px;
-    height: 18px;
-    border: 1px solid #D2DAD2;
-    border-radius: 4px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #C6C6C6;
+    border-radius: 3px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,44 +140,51 @@
     height: 100%;
     cursor: pointer;
     z-index: 2;
+    top: 0;
+    left: 0;
+    margin: 0;
 }
 
 .checkbox-item--checked {
-    background-color: var(--color-green-main);
-    border-color: var(--color-green-main);
+    background-color: #28B028;
+    border-color: #28B028;
 }
 
 .checkbox-item--checked::after {
     content: '';
-    width: 5px;
-    height: 9px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-    margin-bottom: 2px;
+    width: 8px;
+    height: 7px;
+    background-image: url("data:image/svg+xml,%3Csvg width='8' height='7' viewBox='0 0 8 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6.60195 0.210938L2.4858 5.04331L0.759195 3.41562L0.210938 4.00661L2.54922 6.21094L7.21094 0.738057L6.60195 0.210938Z' fill='white' stroke='white' stroke-width='0.3'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 }
 
 /* === STATUS BADGES (BEM) === */
 .status-badge {
-    padding: 6px 12px;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    border-radius: 3px;
     font-weight: 600;
-    font-size: 11px;
+    font-size: 12px;
+    line-height: 14px;
     text-transform: uppercase;
     text-align: center;
-    min-width: 80px;
+    width: 100%;
     white-space: nowrap;
 }
 
 /* Modifiers for Status */
 .status-badge--active {
-    background: #C8E6C9;
-    color: #1B5E20;
+    background: #90E35859;
+    color: var(--color-green-lime);
 }
 
 .status-badge--planned {
-    background: #FFF9C4;
-    color: #FBC02D;
+    background: #FEFAD3;
+    color: var(--color-orange-accent);
 }
 
 .status-badge--complete {
@@ -138,8 +193,8 @@
 }
 
 .status-badge--completed {
-    background: #A5D6A7;
-    color: #1B5E20;
+    background: var(--color-green-soft);
+    color: var(--color-green-dark);
 }
 
 .status-badge--prospect {
@@ -162,21 +217,30 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    position: relative;
+    width: 100%;
 }
 
 /* Edit Button (Pencil) */
 .btn-edit-status {
-    width: 24px;
-    height: 24px;
-    border-radius: 4px;
-    background-color: #E0E0E0;
+    position: absolute;
+    right: -14px;
+    top: -7px;
+    width: 21px;
+    height: 20px;
+    border-radius: 5px;
+    background-color: #E6E6E6;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: none;
+    border: 1px solid #DBDBDB;
     cursor: pointer;
     opacity: 0;
     transition: opacity var(--transition-fast);
+    background-image: url("data:image/svg+xml,%3Csvg width='11' height='11' viewBox='0 0 11 11' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='4.71484' y='9.89844' width='6.28513' height='1.1' fill='%23616161'/%3E%3Cpath d='M7.92151 0L0 8.31834V11H2.5537L10.4752 2.68166L7.92151 0ZM2.14576 9.9657H0.984957V8.74678L6.76071 2.68168L7.92147 3.9006L2.14576 9.9657ZM7.45717 1.95035L7.92147 1.46279L9.08228 2.68168L8.61793 3.16929L7.45717 1.95035Z' fill='%23616161'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-size: 11px;
+    background-position: center;
 }
 
 .data-table__row:hover .btn-edit-status,
@@ -185,20 +249,37 @@
 }
 
 .data-table__row.row-highlight {
-    background-color: #F0F8F0 !important;
+    background-color: #52BA6008 !important;
 }
 
 /* Actions Button */
 .btn-actions {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    color: #808080;
-    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    transition: var(--transition-default);
+    font-weight: bold;
+    font-size: 18px;
     line-height: 1;
+    color: #232323;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0;
 }
 
-.btn-actions:hover {
-    color: var(--color-black-text);
+.btn-actions>span {
+    width: 3px;
+    height: 3px;
+    background-color: #808080;
+}
+
+.btn-actions:hover,
+.custom-dropdown.open .btn-actions {
+    background-color: #F0F0F0;
 }

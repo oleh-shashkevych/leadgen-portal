@@ -122,3 +122,27 @@
 .status-modal__btn--save:hover {
     background-color: var(--color-green-dark);
 }
+
+/* Додаток до modal.css або filters.css */
+
+.modal-dropdown {
+    width: 100%;
+}
+
+.modal-dropdown .dropdown-trigger {
+    width: 100%;
+    justify-content: space-between;
+    /* Текст зліва, стрілка справа */
+    background-color: #fff;
+    border: 1px solid #D2DAD2;
+    height: 40px;
+    /* Трохи вищий для модалки */
+}
+
+.modal-dropdown .dropdown-menu {
+    width: 100%;
+    /* Меню теж на всю ширину */
+    z-index: 1000;
+    /* Щоб перекривало кнопки модалки */
+    margin-top: 5px;
+}

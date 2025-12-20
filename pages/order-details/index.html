@@ -161,11 +161,14 @@
                             <div class="data-table__cell data-table__cell--actions">
                                 <div class="custom-dropdown action-dropdown">
                                     <button class="btn-actions dropdown-trigger">...</button>
-                                    <div class="dropdown-menu" style="right: 0; width: 120px;">
-                                        <div class="dropdown-option" data-value="edit"><span
-                                                class="option-text">Edit</span></div>
-                                        <div class="dropdown-option" data-value="delete" style="color: #FF3C00;"><span
-                                                class="option-text">Delete</span></div>
+
+                                    <div class="dropdown-menu">
+                                        <div class="dropdown-option" data-action="edit">
+                                            <span class="option-text">Edit</span>
+                                        </div>
+                                        <div class="dropdown-option dropdown-option--delete" data-action="delete">
+                                            <span class="option-text">Delete</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -179,7 +182,48 @@
 
     </div>
 
+    <div class="status-modal" id="statusModal">
+        <div class="status-modal__window">
+            <div class="status-modal__header">
+                <h3 class="status-modal__title">Edit Status</h3>
+                <button class="status-modal__close" id="modalCloseX">&times;</button>
+            </div>
+
+            <div class="status-modal__body">
+                <label class="status-modal__label">Select New Status</label>
+
+                <div class="custom-dropdown modal-dropdown" id="modalStatusDropdown">
+                    <button class="dropdown-trigger" style="width: 100%; justify-content: space-between;">
+                        <span class="dropdown-text">Select Status</span>
+                        <img src="../../assets/img/icons/chevron-down.svg" alt="" class="dropdown-chevron">
+                    </button>
+
+                    <div class="dropdown-menu" style="width: 100%;">
+                        <div class="dropdown-option" data-value="PROSPECT">
+                            <div class="option-checkbox"></div>
+                            <span class="option-text">PROSPECT</span>
+                        </div>
+                        <div class="dropdown-option" data-value="APPROVED">
+                            <div class="option-checkbox"></div>
+                            <span class="option-text">APPROVED</span>
+                        </div>
+                        <div class="dropdown-option" data-value="FUNDED">
+                            <div class="option-checkbox"></div>
+                            <span class="option-text">FUNDED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="status-modal__footer">
+                <button class="status-modal__btn status-modal__btn--cancel" id="modalCancel">Cancel</button>
+                <button class="status-modal__btn status-modal__btn--save" id="modalSave">Save</button>
+            </div>
+        </div>
+    </div>
+
     <script src="../../assets/js/core.js"></script>
+    <script src="../../assets/js/ui.js"></script>
     <script src="script.js"></script>
 </body>
 

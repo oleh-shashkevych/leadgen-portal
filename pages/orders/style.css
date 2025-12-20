@@ -4,6 +4,91 @@
 /* Колонки: Checkbox | Date | Name | Details | Quantity | Status | Action */
 .data-table__header,
 .data-table__row {
-    grid-template-columns: 50px 1.2fr 1.5fr 2.5fr 0.8fr 140px 60px;
+    grid-template-columns: 35px 1fr 1fr 2fr 1fr 100px 70px;
     /* Можеш підкоригувати fr значення під контент */
+}
+
+.orders__wrapper {
+    border: 1px solid var(--color-gray-light);
+    background-color: var(--color-white);
+    border-radius: 3px;
+}
+
+.orders__wrapper-top {
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.orders__wrapper-top .search-wrapper {
+    max-width: 465px;
+}
+
+.orders__wrapper-top .search-input {
+    background-color: #F7FAF7;
+    padding-left: 35px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.orders__wrapper-top .search-input::placeholder {
+    color: #6B7B6F;
+}
+
+.orders__wrapper-top .search-icon {
+    right: unset;
+    left: 12px;
+}
+
+.orders__wrapper-bottom {
+    padding: 12px;
+}
+
+#btnExport {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    color: #232323BF;
+    padding: 10px 14px;
+    border-radius: 3px;
+    border: 1px solid #D2DAD2;
+    background-color: var(--color-white);
+}
+
+.action-dropdown .dropdown-menu {
+    padding: 0;
+}
+
+.dropdown-option {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #232323;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 12px;
+    height: auto;
+}
+
+.dropdown-option .option-text {
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 500;
+}
+
+.dropdown-option--delete .option-text {
+    color: #FF3C00;
+}
+
+.modal-dropdown .dropdown-text {
+    text-align: start;
+}
+
+.modal-dropdown .option-checkbox {
+    display: none;
 }
