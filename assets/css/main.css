@@ -9,6 +9,52 @@
 @import 'layout/header.css';
 @import 'layout/sidebar.css';
 
+/* =========================================
+   CUSTOM SCROLLBAR (GLOBAL)
+   ========================================= */
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    /* Вузький скрол */
+    scrollbar-color: var(--color-green-main, #159C2A) transparent;
+    /* Колір повзунка і треку */
+}
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 6px;
+    /* Ширина вертикального скролла */
+    height: 6px;
+    /* Висота горизонтального скролла */
+}
+
+/* Фон скролбару (трек) */
+::-webkit-scrollbar-track {
+    background: transparent;
+    /* Прозорий, щоб не заважав дизайну */
+    /* або background: #F1F1F1; якщо хочеш світло-сіру підкладку */
+}
+
+/* Сам повзунок */
+::-webkit-scrollbar-thumb {
+    background-color: rgba(21, 156, 42, 0.6);
+    /* Напівпрозорий зелений (#159C2A) */
+    border-radius: 3px;
+    /* Закруглені краї */
+}
+
+/* Повзунок при наведенні */
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-green-main, #159C2A);
+    /* Яскравий зелений */
+}
+
+/* Куточок (де зустрічаються вертикальний і горизонтальний скроли) */
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
 /* Блок Layout */
 .layout {
     display: flex;
@@ -31,6 +77,7 @@
     flex-direction: column;
     position: relative;
     transition: all var(--transition-smooth);
+    max-height: calc(100vh - var(--header-height));
 }
 
 .page-container {

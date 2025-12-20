@@ -105,7 +105,130 @@
             <div class="page-container">
                 <h1 class="page-title">Orders</h1>
 
+                <div class="approval-grid">
 
+                    <div class="approval-amount">
+                        <div class="approval-amount__header approval-amount__header--date">
+                            <h2 class="approval-amount__title">MAY 10, 2023</h2>
+                        </div>
+
+                        <div class="approval-amount__graphs">
+                            <div class="approval-amount__graph">
+                                <div class="progress-circle" id="monthly-goal-circle"
+                                    style="--fill-color: var(--color-green-main);">
+                                    <span class="progress-circle__value" id="monthly-goal-value">$0k</span>
+                                </div>
+                                <div class="goal-item__details">
+                                    <span class="goal-item__label">Monthly goal</span>
+                                    <span class="goal-item__full-value" id="monthly-goal-full-value">$0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="approval-amount__graph">
+                                <div class="progress-circle" id="amount-funded-circle" style="--fill-color: #54BE59;">
+                                    <span class="progress-circle__value" id="amount-funded-value">$0k</span>
+                                </div>
+                                <div class="goal-item__details">
+                                    <span class="goal-item__label">Amount Funded</span>
+                                    <span class="goal-item__full-value color-green"
+                                        id="amount-funded-full-value">$0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="approval-amount__graph">
+                                <div class="progress-circle" id="previous-total-circle" style="--fill-color: #ABE1AA;">
+                                    <span class="progress-circle__value" id="previous-total-value">$0k</span>
+                                </div>
+                                <div class="goal-item__details">
+                                    <span class="goal-item__label">Previous Total</span>
+                                    <span class="goal-item__full-value" id="previous-total-full-value">$0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="approval-amount">
+                        <div class="approval-amount__header">
+                            <h2 class="approval-amount__title">Funded Amount</h2>
+
+                            <div class="approval-amount__header-nav">
+                                <div class="approval__switch">
+                                    <button class="approval__switch-btn approval__switch-btn--active"
+                                        id="toggleLineChart" type="button" data-view="line">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M3 20.25V3.75" />
+                                            <path d="M19.5 20.25H3.75" />
+                                            <path d="M6.75 17.25L11.25 12.75L15 16.5L21 10.5" />
+                                        </svg>
+                                    </button>
+                                    <button class="approval__switch-btn" id="toggleUsersChart" type="button"
+                                        data-view="users">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" />
+                                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                        </svg>
+                                    </button>
+                                    <button class="approval__switch-btn" id="toggleTableChart" type="button"
+                                        data-view="table">
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                                            <path d="M3 9h18" />
+                                            <path d="M9 21V9" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="approval-amount__body">
+                            <div class="approval-amount__stats" id="statsRow">
+                                <div class="approval-amount__item">
+                                    <span class="approval-amount__label">Contracts concluded</span>
+                                    <span class="approval-amount__value color-green"
+                                        id="stats-concluded-value">$0.00</span>
+                                    <span class="approval-amount__option" id="stats-concluded-option">Last 12
+                                        months</span>
+                                </div>
+                                <div class="approval-amount__item">
+                                    <span class="approval-amount__label">Total Contracts</span>
+                                    <span class="approval-amount__value color-green" id="stats-concluded-count">0</span>
+                                </div>
+                                <div class="approval-amount__item">
+                                    <span class="approval-amount__label">Totals Value</span>
+                                    <span class="approval-amount__value" id="stats-concluded-total-value">$0.00</span>
+                                </div>
+                                <div class="approval-amount__item">
+                                    <span class="approval-amount__label">Contracts Killed</span>
+                                    <span class="approval-amount__value color-red" id="stats-killed-value">$0.00</span>
+                                    <span class="approval-amount__option" id="stats-killed-option">Last 12 months</span>
+                                </div>
+                                <div class="approval-amount__item">
+                                    <span class="approval-amount__label">Total Contracts</span>
+                                    <span class="approval-amount__value color-red" id="stats-killed-count">0</span>
+                                </div>
+                                <div class="approval-amount__item">
+                                    <span class="approval-amount__label">Totals Value</span>
+                                    <span class="approval-amount__value" id="stats-killed-total-value">$0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="approval-amount__chart_container" id="lineChartContainer">
+                                <canvas id="approvalApprovalAmountChart"></canvas>
+                            </div>
+
+                            <div class="users-chart__container hidden" id="usersChartContainer">
+                            </div>
+
+                            <div class="approval-table__container hidden" id="tableContainer"></div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="orders__wrapper">
                     <div class="orders__wrapper-top">
@@ -288,6 +411,95 @@
     <script src="../../assets/js/core.js"></script>
     <script src="../../assets/js/ui.js"></script>
     <script src="script.js"></script>
+
+    <div id="demo-nav" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif;">
+
+        <button id="demo-nav-btn" style="
+        width: 50px; 
+        height: 50px; 
+        border-radius: 50%; 
+        background: #232323; 
+        color: #fff; 
+        border: none; 
+        cursor: pointer; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px;
+        transition: transform 0.2s;
+    ">
+            ☰
+        </button>
+
+        <div id="demo-nav-list" style="
+        position: absolute; 
+        bottom: 60px; 
+        right: 0; 
+        background: #fff; 
+        border: 1px solid #ddd; 
+        border-radius: 8px; 
+        padding: 10px; 
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
+        width: 200px; 
+        display: none; 
+        flex-direction: column; 
+        gap: 8px;
+    ">
+            <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #888; text-transform: uppercase;">All Pages</h4>
+
+            <a href="/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🏠
+                Dashboard</a>
+            <a href="/pages/orders/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📋
+                Orders</a>
+            <a href="/pages/order-details/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📄
+                Order Details</a>
+            <a href="/pages/lead-marketplace/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🛒
+                Marketplace</a>
+        </div>
+
+        <script>
+            (function () {
+                const btn = document.getElementById('demo-nav-btn');
+                const list = document.getElementById('demo-nav-list');
+                const links = list.querySelectorAll('a');
+
+                // 1. Toggle visibility
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent immediate closing
+                    const isHidden = list.style.display === 'none' || list.style.display === '';
+                    list.style.display = isHidden ? 'flex' : 'none';
+                    btn.innerHTML = isHidden ? '✕' : '☰';
+                });
+
+                // 2. Hover effects for links (inline styles workaround)
+                links.forEach(link => {
+                    link.addEventListener('mouseenter', () => link.style.background = '#f0f0f0');
+                    link.addEventListener('mouseleave', () => link.style.background = 'transparent');
+
+                    // Highlight current page
+                    if (window.location.pathname === link.getAttribute('href')) {
+                        link.style.background = '#e0ffe0';
+                        link.style.fontWeight = 'bold';
+                    }
+                });
+
+                // 3. Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!document.getElementById('demo-nav').contains(e.target)) {
+                        list.style.display = 'none';
+                        btn.innerHTML = '☰';
+                    }
+                });
+
+                // 4. PATH FIXER (Optional: Makes it work even if you are not using Live Server)
+                // It tries to adjust links relative to current depth if protocol is file://
+                // But for standard web dev (localhost:5500), root paths / are best.
+            })();
+        </script>
+    </div>
 </body>
 
 </html>

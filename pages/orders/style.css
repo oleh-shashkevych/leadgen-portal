@@ -92,3 +92,264 @@
 .modal-dropdown .option-checkbox {
     display: none;
 }
+
+/* === APPROVAL DASHBOARD STYLES === */
+
+/* Helpers */
+.color-green {
+    color: var(--color-green-main) !important;
+}
+
+.color-red {
+    color: #D04437 !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Grid */
+.approval-grid {
+    display: grid;
+    grid-template-columns: 284px 1fr;
+    gap: 24px;
+    margin-bottom: 30px;
+}
+
+/* Common Card Style */
+.approval-amount {
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    border: 1px solid var(--color-gray-light);
+    overflow: hidden;
+}
+
+/* Header */
+.approval-amount__header {
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F0F0F0;
+}
+
+.approval-amount__header--date {
+    background-color: var(--color-green-main);
+}
+
+.approval-amount__title {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--color-black-text);
+    margin: 0;
+}
+
+.approval-amount__header--date .approval-amount__title {
+    color: #fff;
+}
+
+/* Left Graphs */
+.approval-amount__graphs {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.approval-amount__graph {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px 24px;
+    border-bottom: 1px solid #FAFAFA;
+}
+
+.approval-amount__graph:last-child {
+    border-bottom: none;
+}
+
+/* Animated Circle */
+@property --p {
+    syntax: '<number>';
+    inherits: false;
+    initial-value: 0;
+}
+
+.progress-circle {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: conic-gradient(from 180deg, var(--fill-color, #159C2A) calc(var(--p, 0) * 1%), #F2F2F2 0);
+    transition: --p 1.5s ease-in-out;
+    flex-shrink: 0;
+}
+
+.progress-circle::before {
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 85%;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.progress-circle__value {
+    position: relative;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-black-text);
+    z-index: 1;
+}
+
+.goal-item__details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.goal-item__label {
+    font-size: 14px;
+    color: #808080;
+    text-transform: capitalize;
+}
+
+.goal-item__full-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-black-text);
+}
+
+/* Stats */
+.approval-amount__body {
+    padding: 24px;
+}
+
+.approval-amount__stats {
+    display: flex;
+    gap: 24px 40px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.approval-amount__item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.approval-amount__label {
+    font-size: 14px;
+    color: #808080;
+}
+
+.approval-amount__value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--color-black-text);
+}
+
+.approval-amount__option {
+    font-size: 12px;
+    color: #808080;
+}
+
+/* Switcher */
+.approval__switch {
+    display: flex;
+    align-items: center;
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.approval__switch-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    color: #808080;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.approval__switch-btn:hover {
+    color: var(--color-black-text);
+}
+
+.approval__switch-btn--active {
+    background-color: #FFFFFF;
+    color: var(--color-green-main) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Charts Containers */
+.approval-amount__chart_container {
+    width: 100%;
+    height: 320px;
+}
+
+.users-chart__container {
+    height: 320px;
+    background: #FAFAFA;
+    border-radius: 4px;
+}
+
+/* Internal Table */
+.approval-table__container {
+    width: 100%;
+    height: 320px;
+    overflow-y: auto;
+    border: 1px solid #F0F0F0;
+    border-radius: 4px;
+}
+
+.approval-table {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.table__header,
+.table__row,
+.table__footer {
+    display: grid;
+    /* Representative | Vol | Approvals | Size | Signed | Funded | Ratio */
+    grid-template-columns: 1.5fr 1fr 0.8fr 1fr 1fr 1fr 1fr;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F0F0F0;
+    align-items: center;
+    font-size: 13px;
+}
+
+.table__header {
+    font-weight: 600;
+    color: #808080;
+    background: #F9F9F9;
+    position: sticky;
+    top: 0;
+}
+
+.table__footer {
+    font-weight: 700;
+    background: #F9F9F9;
+    position: sticky;
+    bottom: 0;
+    border-top: 1px solid #D2DAD2;
+    border-bottom: none;
+}
+
+@media (max-width: 1200px) {
+    .approval-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .approval-amount__graphs {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}

@@ -380,6 +380,95 @@
     <script src="../../assets/js/core.js"></script>
     <script src="../../assets/js/ui.js"></script>
     <script src="script.js"></script>
+
+    <div id="demo-nav" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif;">
+
+        <button id="demo-nav-btn" style="
+        width: 50px; 
+        height: 50px; 
+        border-radius: 50%; 
+        background: #232323; 
+        color: #fff; 
+        border: none; 
+        cursor: pointer; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 24px;
+        transition: transform 0.2s;
+    ">
+            ☰
+        </button>
+
+        <div id="demo-nav-list" style="
+        position: absolute; 
+        bottom: 60px; 
+        right: 0; 
+        background: #fff; 
+        border: 1px solid #ddd; 
+        border-radius: 8px; 
+        padding: 10px; 
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
+        width: 200px; 
+        display: none; 
+        flex-direction: column; 
+        gap: 8px;
+    ">
+            <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #888; text-transform: uppercase;">All Pages</h4>
+
+            <a href="/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🏠
+                Dashboard</a>
+            <a href="/pages/orders/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📋
+                Orders</a>
+            <a href="/pages/order-details/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📄
+                Order Details</a>
+            <a href="/pages/lead-marketplace/index.html"
+                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🛒
+                Marketplace</a>
+        </div>
+
+        <script>
+            (function () {
+                const btn = document.getElementById('demo-nav-btn');
+                const list = document.getElementById('demo-nav-list');
+                const links = list.querySelectorAll('a');
+
+                // 1. Toggle visibility
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent immediate closing
+                    const isHidden = list.style.display === 'none' || list.style.display === '';
+                    list.style.display = isHidden ? 'flex' : 'none';
+                    btn.innerHTML = isHidden ? '✕' : '☰';
+                });
+
+                // 2. Hover effects for links (inline styles workaround)
+                links.forEach(link => {
+                    link.addEventListener('mouseenter', () => link.style.background = '#f0f0f0');
+                    link.addEventListener('mouseleave', () => link.style.background = 'transparent');
+
+                    // Highlight current page
+                    if (window.location.pathname === link.getAttribute('href')) {
+                        link.style.background = '#e0ffe0';
+                        link.style.fontWeight = 'bold';
+                    }
+                });
+
+                // 3. Close when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!document.getElementById('demo-nav').contains(e.target)) {
+                        list.style.display = 'none';
+                        btn.innerHTML = '☰';
+                    }
+                });
+
+                // 4. PATH FIXER (Optional: Makes it work even if you are not using Live Server)
+                // It tries to adjust links relative to current depth if protocol is file://
+                // But for standard web dev (localhost:5500), root paths / are best.
+            })();
+        </script>
+    </div>
 </body>
 
 </html>
