@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     opacity: 0, pointerEvents: 'none', position: 'absolute',
                                     background: '#fff', borderRadius: '3px', color: '#1B1B1B',
                                     border: '1px solid #E8E9E8', padding: '8px 12px',
-                                    fontFamily: 'var(--font-main)', textAlign: 'left', zIndex: 100
+                                    fontFamily: 'var(--font-main)', textAlign: 'left', zIndex: 100, transition: 'all .3s ease'
                                 });
                                 tooltipEl.innerHTML = '<table></table>';
                                 document.body.appendChild(tooltipEl);

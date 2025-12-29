@@ -55,7 +55,7 @@
 
 #btnExport {
     font-weight: 500;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     text-align: center;
     color: #232323BF;
@@ -84,7 +84,7 @@
 }
 
 .dropdown-option .option-text {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 14px;
     font-weight: 500;
 }

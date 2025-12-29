@@ -4,7 +4,7 @@
     flex-direction: column;
     background: #FFFFFF;
     font-family: var(--font-main);
-    font-size: 12px;
+    font-size: 14px;
     padding: 12px;
 }
 
@@ -31,7 +31,7 @@
     align-items: center;
     border-bottom: 1px solid #E8E9E8;
     transition: background-color var(--transition-fast);
-    font-size: 12px;
+    font-size: 14px;
     color: #232323BF;
     font-weight: 500;
 }
@@ -59,7 +59,7 @@
 }
 
 .data-table__cell a {
-    text-decoration: underline;
+    text-decoration: none;
     color: inherit;
     transition: var(--transition-default);
 }
