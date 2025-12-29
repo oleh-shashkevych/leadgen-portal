@@ -1,204 +1,342 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LeadGen Portal</title>
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LeadGen Portal</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-</head>
+    <body>
+        <header class="header">
+            <div class="header__left">
+                <a href="/" class="logo">
+                    <img
+                        src="assets/img/logo.svg"
+                        alt="LeadGen Portal"
+                        class="logo__img"
+                    />
+                </a>
 
-<body>
-
-    <header class="header">
-        <div class="header__left">
-            <a href="/" class="logo">
-                <img src="assets/img/logo.svg" alt="LeadGen Portal" class="logo__img">
-            </a>
-
-            <button class="header__toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
-                <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="18" height="2" transform="matrix(-1 0 0 1 18 0)" fill="#52BA60" />
-                    <rect width="13" height="2" transform="matrix(-1 0 0 1 13 7)" fill="#52BA60" />
-                    <rect width="18" height="2" transform="matrix(-1 0 0 1 18 14)" fill="#52BA60" />
-                </svg>
-            </button>
-        </div>
-
-        <div class="header__right">
-            <div class="header__balance">
-                <img src="assets/img/icons/balance.svg" alt="Balance" class="balance-icon">
-                <span class="balance-text">ex. $23,656</span>
+                <button
+                    class="header__toggle"
+                    id="sidebarToggle"
+                    aria-label="Toggle Sidebar"
+                >
+                    <svg
+                        width="18"
+                        height="16"
+                        viewBox="0 0 18 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <rect
+                            width="18"
+                            height="2"
+                            transform="matrix(-1 0 0 1 18 0)"
+                            fill="#52BA60"
+                        />
+                        <rect
+                            width="13"
+                            height="2"
+                            transform="matrix(-1 0 0 1 13 7)"
+                            fill="#52BA60"
+                        />
+                        <rect
+                            width="18"
+                            height="2"
+                            transform="matrix(-1 0 0 1 18 14)"
+                            fill="#52BA60"
+                        />
+                    </svg>
+                </button>
             </div>
 
-            <button type="button" class="header__buy-btn">Buy More</button>
-
-            <button type="button" class="header__notification" aria-label="Notifications">
-                <img src="assets/img/icons/notification.svg" alt="" class="notification-icon">
-                <span class="notification-dot"></span>
-            </button>
-        </div>
-    </header>
-
-    <div class="layout">
-
-        <aside class="sidebar layout__sidebar" id="sidebar">
-            <nav class="sidebar__nav">
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">
-                            <span class="nav-icon"
-                                style="--icon-url: url('../../../assets/img/icons/house.svg');"></span>
-                            <span class="nav-text">Dashboard</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="nav-icon"
-                                style="--icon-url: url('../../../assets/img/icons/list-with-check.svg');"></span>
-                            <span class="nav-text">Orders</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="nav-icon"
-                                style="--icon-url: url('../../../assets/img/icons/graph.svg');"></span>
-                            <span class="nav-text">Analytics</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <span class="nav-icon"
-                                style="--icon-url: url('../../../assets/img/icons/settings.svg');"></span>
-                            <span class="nav-text">Settings</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="sidebar__footer">
-                <div class="workspace-label">WORKSPACE</div>
-
-                <div class="workspace-card">
-                    <div class="user-info-row">
-                        <img src="assets/img/avatars/avatar-1.png" alt="User" class="user-avatar">
-                        <div class="user-details">
-                            <div class="user-name">Jonathan</div>
-                            <div class="user-role">Credit Analyst</div>
-                            <div class="user-email">jonathan@fundshop.com</div>
-                        </div>
-                    </div>
-
-                    <button class="logout-btn">
-                        <span class="logout-icon"
-                            style="--icon-url: url('../../../assets/img/icons/login.svg');"></span>
-                        <span class="logout-text">Logout</span>
-                    </button>
+            <div class="header__right">
+                <div class="header__balance">
+                    <img
+                        src="assets/img/icons/balance.svg"
+                        alt="Balance"
+                        class="balance-icon"
+                    />
+                    <span class="balance-text">ex. $23,656</span>
                 </div>
+
+                <button type="button" class="header__buy-btn">Buy More</button>
+
+                <button
+                    type="button"
+                    class="header__notification"
+                    aria-label="Notifications"
+                >
+                    <img
+                        src="assets/img/icons/notification.svg"
+                        alt=""
+                        class="notification-icon"
+                    />
+                    <span class="notification-dot"></span>
+                </button>
             </div>
-        </aside>
+        </header>
 
-        <main class="main-content layout__main">
-            <div class="page-container">
-                <h1>Dashboard</h1>
-            </div>
-        </main>
+        <div class="layout">
+            <aside class="sidebar layout__sidebar" id="sidebar">
+                <nav class="sidebar__nav">
+                    <ul class="nav-list">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link active">
+                                <span
+                                    class="nav-icon"
+                                    style="
+                                        --icon-url: url(&quot;../../../assets/img/icons/house.svg&quot;);
+                                    "
+                                ></span>
+                                <span class="nav-text">Dashboard</span>
+                            </a>
+                        </li>
 
-    </div>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <span
+                                    class="nav-icon"
+                                    style="
+                                        --icon-url: url(&quot;../../../assets/img/icons/list-with-check.svg&quot;);
+                                    "
+                                ></span>
+                                <span class="nav-text">Orders</span>
+                            </a>
+                        </li>
 
-    <script src="assets/js/core.js"></script>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <span
+                                    class="nav-icon"
+                                    style="
+                                        --icon-url: url(&quot;../../../assets/img/icons/graph.svg&quot;);
+                                    "
+                                ></span>
+                                <span class="nav-text">Analytics</span>
+                            </a>
+                        </li>
 
-    <div id="demo-nav" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif;">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <span
+                                    class="nav-icon"
+                                    style="
+                                        --icon-url: url(&quot;../../../assets/img/icons/settings.svg&quot;);
+                                    "
+                                ></span>
+                                <span class="nav-text">Settings</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-        <button id="demo-nav-btn" style="
-        width: 50px; 
-        height: 50px; 
-        border-radius: 50%; 
-        background: #232323; 
-        color: #fff; 
-        border: none; 
-        cursor: pointer; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 24px;
-        transition: transform 0.2s;
-    ">
-            ☰
-        </button>
+                <div class="sidebar__footer">
+                    <div class="workspace-label">WORKSPACE</div>
 
-        <div id="demo-nav-list" style="
-        position: absolute; 
-        bottom: 60px; 
-        right: 0; 
-        background: #fff; 
-        border: 1px solid #ddd; 
-        border-radius: 8px; 
-        padding: 10px; 
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
-        width: 200px; 
-        display: none; 
-        flex-direction: column; 
-        gap: 8px;
-    ">
-            <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #888; text-transform: uppercase;">All Pages</h4>
+                    <div class="workspace-card">
+                        <div class="user-info-row">
+                            <img
+                                src="assets/img/avatars/avatar-1.png"
+                                alt="User"
+                                class="user-avatar"
+                            />
+                            <div class="user-details">
+                                <div class="user-name">Jonathan</div>
+                                <div class="user-role">Credit Analyst</div>
+                                <div class="user-email">
+                                    jonathan@fundshop.com
+                                </div>
+                            </div>
+                        </div>
 
-            <a href="/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🏠
-                Dashboard</a>
-            <a href="/pages/orders/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📋
-                Orders</a>
-            <a href="/pages/order-details/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📄
-                Order Details</a>
-            <a href="/pages/lead-marketplace/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🛒
-                Marketplace</a>
+                        <button class="logout-btn">
+                            <span
+                                class="logout-icon"
+                                style="
+                                    --icon-url: url(&quot;../../../assets/img/icons/login.svg&quot;);
+                                "
+                            ></span>
+                            <span class="logout-text">Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="main-content layout__main">
+                <div class="page-container">
+                    <h1>Dashboard</h1>
+                </div>
+            </main>
         </div>
 
-        <script>
-            (function () {
-                const btn = document.getElementById('demo-nav-btn');
-                const list = document.getElementById('demo-nav-list');
-                const links = list.querySelectorAll('a');
+        <script src="assets/js/core.js"></script>
 
-                // 1. Toggle visibility
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation(); // Prevent immediate closing
-                    const isHidden = list.style.display === 'none' || list.style.display === '';
-                    list.style.display = isHidden ? 'flex' : 'none';
-                    btn.innerHTML = isHidden ? '✕' : '☰';
-                });
+        <div
+            id="demo-nav"
+            style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+                font-family: sans-serif;
+            "
+        >
+            <button
+                id="demo-nav-btn"
+                style="
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: #232323;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    transition: transform 0.2s;
+                "
+            >
+                ☰
+            </button>
 
-                // 2. Hover effects for links (inline styles workaround)
-                links.forEach(link => {
-                    link.addEventListener('mouseenter', () => link.style.background = '#f0f0f0');
-                    link.addEventListener('mouseleave', () => link.style.background = 'transparent');
+            <div
+                id="demo-nav-list"
+                style="
+                    position: absolute;
+                    bottom: 60px;
+                    right: 0;
+                    background: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 10px;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                    width: 200px;
+                    display: none;
+                    flex-direction: column;
+                    gap: 8px;
+                "
+            >
+                <h4
+                    style="
+                        margin: 0 0 8px 0;
+                        font-size: 12px;
+                        color: #888;
+                        text-transform: uppercase;
+                    "
+                >
+                    All Pages
+                </h4>
 
-                    // Highlight current page
-                    if (window.location.pathname === link.getAttribute('href')) {
-                        link.style.background = '#e0ffe0';
-                        link.style.fontWeight = 'bold';
-                    }
-                });
+                <a
+                    href="/index.html"
+                    style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    "
+                    >🏠 Dashboard</a
+                >
+                <a
+                    href="/pages/orders/index.html"
+                    style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    "
+                    >📋 Orders</a
+                >
+                <a
+                    href="/pages/order-details/index.html"
+                    style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    "
+                    >📄 Order Details</a
+                >
+                <a
+                    href="/pages/lead-marketplace/index.html"
+                    style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    "
+                    >🛒 Marketplace</a
+                >
+            </div>
 
-                // 3. Close when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!document.getElementById('demo-nav').contains(e.target)) {
-                        list.style.display = 'none';
-                        btn.innerHTML = '☰';
-                    }
-                });
+            <script>
+                (function () {
+                    const btn = document.getElementById("demo-nav-btn");
+                    const list = document.getElementById("demo-nav-list");
+                    const links = list.querySelectorAll("a");
 
-                // 4. PATH FIXER (Optional: Makes it work even if you are not using Live Server)
-                // It tries to adjust links relative to current depth if protocol is file://
-                // But for standard web dev (localhost:5500), root paths / are best.
-            })();
-        </script>
-    </div>
-</body>
+                    // 1. Toggle visibility
+                    btn.addEventListener("click", (e) => {
+                        e.stopPropagation(); // Prevent immediate closing
+                        const isHidden =
+                            list.style.display === "none" ||
+                            list.style.display === "";
+                        list.style.display = isHidden ? "flex" : "none";
+                        btn.innerHTML = isHidden ? "✕" : "☰";
+                    });
 
+                    // 2. Hover effects for links (inline styles workaround)
+                    links.forEach((link) => {
+                        link.addEventListener(
+                            "mouseenter",
+                            () => (link.style.background = "#f0f0f0"),
+                        );
+                        link.addEventListener(
+                            "mouseleave",
+                            () => (link.style.background = "transparent"),
+                        );
+
+                        // Highlight current page
+                        if (
+                            window.location.pathname ===
+                            link.getAttribute("href")
+                        ) {
+                            link.style.background = "#e0ffe0";
+                            link.style.fontWeight = "bold";
+                        }
+                    });
+
+                    // 3. Close when clicking outside
+                    document.addEventListener("click", (e) => {
+                        if (
+                            !document
+                                .getElementById("demo-nav")
+                                .contains(e.target)
+                        ) {
+                            list.style.display = "none";
+                            btn.innerHTML = "☰";
+                        }
+                    });
+
+                    // 4. PATH FIXER (Optional: Makes it work even if you are not using Live Server)
+                    // It tries to adjust links relative to current depth if protocol is file://
+                    // But for standard web dev (localhost:5500), root paths / are best.
+                })();
+            </script>
+        </div>
+    </body>
 </html>
