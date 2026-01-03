@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Page Logic Loaded');
 
-    // === СПІЛЬНІ ЗМІННІ (Оголошуємо один раз тут) ===
+    // === СПІЛЬНІ ЗМІННІ ===
     const dataTable = document.querySelector('.data-table');
 
 
@@ -87,14 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =========================================
-       2. STATUS EDIT MODAL LOGIC (CUSTOM DROPDOWN)
+       2. STATUS EDIT MODAL LOGIC
     ========================================= */
     const modalOverlay = document.getElementById('statusModal');
     const btnCloseX = document.getElementById('modalCloseX');
     const btnCancel = document.getElementById('modalCancel');
     const btnSave = document.getElementById('modalSave');
 
-    // Селектори для кастомного дропдауна в модалці
     const modalDropdown = document.getElementById('modalStatusDropdown');
     const dropdownTriggerText = modalDropdown ? modalDropdown.querySelector('.dropdown-text') : null;
     const dropdownOptions = modalDropdown ? modalDropdown.querySelectorAll('.dropdown-option') : [];
@@ -122,12 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentBadge && modalDropdown) {
             const currentStatusText = currentBadge.textContent.trim();
 
-            // 1. Оновлюємо текст на кнопці дропдауна
             if (dropdownTriggerText) {
                 dropdownTriggerText.textContent = currentStatusText;
             }
 
-            // 2. Візуально виділяємо опцію в списку
             dropdownOptions.forEach(opt => {
                 const val = opt.getAttribute('data-value');
                 if (val === currentStatusText) {
@@ -141,7 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function closeModal() {
         if (modalOverlay) modalOverlay.classList.remove('status-modal--open');
-        // Закриваємо дропдаун, якщо він залишився відкритим
         if (modalDropdown) modalDropdown.classList.remove('open');
 
         if (currentRow) {
@@ -154,22 +150,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function saveStatus() {
         if (!currentRow || !currentBadge || !modalDropdown) return;
 
-        // Знаходимо вибрану опцію (клас .selected додає ui.js)
         const selectedOption = modalDropdown.querySelector('.dropdown-option.selected');
-
         let newStatus = '';
 
         if (selectedOption) {
             newStatus = selectedOption.getAttribute('data-value');
         } else {
-            // Фолбек: якщо не клікали, беремо поточний текст
             newStatus = dropdownTriggerText.textContent.trim();
         }
 
-        // 1. Оновлюємо текст
         currentBadge.textContent = newStatus;
 
-        // 2. Оновлюємо колір
         Object.values(statusClasses).forEach(cls => {
             currentBadge.classList.remove(cls);
         });
@@ -182,7 +173,6 @@ document.addEventListener('DOMContentLoaded', () => {
         closeModal();
     }
 
-    // Слухачі кнопок модалки
     if (btnCloseX) btnCloseX.addEventListener('click', closeModal);
     if (btnCancel) btnCancel.addEventListener('click', closeModal);
     if (btnSave) {
@@ -194,14 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* =========================================
        3. ACTIONS DROPDOWN & TABLE CLICKS
-       (Делегування подій)
     ========================================= */
-
     if (dataTable) {
         dataTable.addEventListener('click', (e) => {
             const target = e.target;
 
-            // --- A. Клік по кнопці редагування статусу (Олівець) ---
+            // --- A. Edit Status ---
             const editBtn = target.closest('.btn-edit-status');
             if (editBtn) {
                 e.stopPropagation();
@@ -210,13 +198,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // --- B. Клік по трикрапці (Дропдаун Actions) ---
+            // --- B. Actions Dropdown ---
             const trigger = target.closest('.btn-actions');
             if (trigger) {
                 e.stopPropagation();
                 const dropdown = trigger.closest('.custom-dropdown');
 
-                // Закрити інші відкриті дропдауни
                 document.querySelectorAll('.action-dropdown.open').forEach(d => {
                     if (d !== dropdown) d.classList.remove('open');
                 });
@@ -225,31 +212,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // --- C. Клік по пункту меню (Edit/Delete) ---
+            // --- C. Dropdown Options ---
             const option = target.closest('.dropdown-option');
             if (option) {
                 const action = option.getAttribute('data-action');
                 const row = option.closest('.data-table__row');
                 const rowId = row.getAttribute('data-id');
 
-                // Закриваємо меню
                 const dropdown = option.closest('.custom-dropdown');
                 dropdown.classList.remove('open');
 
                 console.log(`Action: ${action.toUpperCase()} on Row ID: ${rowId}`);
-
-                if (action === 'edit') {
-                    // Тут логіка для Edit з меню Actions
-                    // openModal(row); 
-                } else if (action === 'delete') {
-                    // Тут логіка для Delete
-                    // row.remove();
-                }
             }
         });
     }
 
-    // Закриття дропдаунів при кліку будь-де поза ними
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.action-dropdown')) {
             document.querySelectorAll('.action-dropdown.open').forEach(d => {
@@ -259,7 +236,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* ==========================================================================
-       4. APPROVAL DASHBOARD LOGIC (Preserved Functionality)
+       4. APPROVAL DASHBOARD DATA
        ========================================================================== */
     const currentDataType = 'direct';
 
@@ -290,26 +267,171 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 4, representative: 'James', totalVol: 245671.13, numOfApprovals: 4, avgSize: 61417.78, contractsSigned: { units: 3, perc: 75.00 }, numOfFunded: { units: 1, perc: 33.33 }, approvedToFunded: { perc: 25.00 } },
             { id: 5, representative: 'Damon', totalVol: 150049.21, numOfApprovals: 33, avgSize: 4546.95, contractsSigned: { units: 21, perc: 63.64 }, numOfFunded: { units: 18, perc: 85.71 }, approvedToFunded: { perc: 54.55 } },
             { id: 6, representative: 'Sophia', totalVol: 68912.45, numOfApprovals: 51, avgSize: 1351.22, contractsSigned: { units: 45, perc: 88.24 }, numOfFunded: { units: 20, perc: 44.44 }, approvedToFunded: { perc: 39.22 } },
-            { id: 7, representative: 'Filip', totalVol: 298450.96, numOfApprovals: 12, avgSize: 24870.91, contractsSigned: { units: 8, perc: 66.67 }, numOfFunded: { units: 3, perc: 37.50 }, approvedToFunded: { perc: 25.00 } },
-            { id: 8, representative: 'Patrick', totalVol: 175231.54, numOfApprovals: 42, avgSize: 4172.18, contractsSigned: { units: 15, perc: 35.71 }, numOfFunded: { units: 1, perc: 6.67 }, approvedToFunded: { perc: 2.38 } },
-            { id: 9, representative: 'Eliot', totalVol: 220101.33, numOfApprovals: 22, avgSize: 10004.61, contractsSigned: { units: 1, perc: 4.55 }, numOfFunded: { units: 0, perc: 0.00 }, approvedToFunded: { perc: 0.00 } },
-            { id: 10, representative: 'Emma', totalVol: 59881.18, numOfApprovals: 38, avgSize: 1575.82, contractsSigned: { units: 30, perc: 78.95 }, numOfFunded: { units: 25, perc: 83.33 }, approvedToFunded: { perc: 65.79 } },
-            { id: 11, representative: 'Cho', totalVol: 199420.57, numOfApprovals: 7, avgSize: 28488.65, contractsSigned: { units: 5, perc: 71.43 }, numOfFunded: { units: 4, perc: 80.00 }, approvedToFunded: { perc: 57.14 } },
-            { id: 12, representative: 'Lucas', totalVol: 123456.78, numOfApprovals: 25, avgSize: 4938.27, contractsSigned: { units: 18, perc: 72.00 }, numOfFunded: { units: 9, perc: 50.00 }, approvedToFunded: { perc: 36.00 } },
-            { id: 13, representative: 'Noah', totalVol: 88765.43, numOfApprovals: 45, avgSize: 1972.56, contractsSigned: { units: 20, perc: 44.44 }, numOfFunded: { units: 11, perc: 55.00 }, approvedToFunded: { perc: 24.44 } },
-            { id: 14, representative: 'Mia', totalVol: 265432.10, numOfApprovals: 18, avgSize: 14746.23, contractsSigned: { units: 12, perc: 66.67 }, numOfFunded: { units: 10, perc: 83.33 }, approvedToFunded: { perc: 55.56 } },
-            { id: 15, representative: 'Ava', totalVol: 112233.44, numOfApprovals: 30, avgSize: 3741.11, contractsSigned: { units: 25, perc: 83.33 }, numOfFunded: { units: 15, perc: 60.00 }, approvedToFunded: { perc: 50.00 } },
         ]
     };
 
-    // --- CHART.JS INIT (UPDATED DESIGN + ORIGINAL HOVER) ---
+    /* ==========================================================================
+       5. USERS CHART LOGIC (UPDATED: Bigger Size, Thicker Lines, Circular Flow)
+       ========================================================================== */
+
+    // JSON Data
+    const usersChartDataJson = [
+        { "label": "Lead In", "value": 26.85, "color": "#0D661A54" },      // Transparent Green
+        { "label": "Contact Made", "value": 18.46, "color": "#159C2A" },   // Green
+        { "label": "Close Lost", "value": 21.32, "color": "#EB9B00" },     // Orange
+        { "label": "Interview", "value": 14.85, "color": "#14AAC7" },      // Blue
+        { "label": "Proposal", "value": 9.84, "color": "#6BA31D" },        // Olive
+        { "label": "Negotiation", "value": 5.06, "color": "#00A488" }      // Teal
+    ];
+
+    // Custom Plugin for Outside Labels
+    const outsideLabelsPlugin = {
+        id: 'outsideLabels',
+        afterDraw: (chart) => {
+            const { ctx } = chart;
+
+            chart.data.datasets.forEach((dataset, i) => {
+                const meta = chart.getDatasetMeta(i);
+                if (meta.hidden) return;
+
+                meta.data.forEach((element, index) => {
+                    // Geometry
+                    const center = element.getCenterPoint();
+                    const model = element;
+                    const angle = (element.startAngle + element.endAngle) / 2;
+                    const outerRadius = element.outerRadius;
+
+                    // UPDATED: Adjusted line lengths for bigger chart
+                    const textRadius = outerRadius + 25;
+                    const xEdge = model.x + Math.cos(angle) * outerRadius;
+                    const yEdge = model.y + Math.sin(angle) * outerRadius;
+
+                    const xLine = model.x + Math.cos(angle) * (outerRadius + 10);
+                    const yLine = model.y + Math.sin(angle) * (outerRadius + 10);
+
+                    const xText = model.x + Math.cos(angle) * textRadius;
+                    const yText = model.y + Math.sin(angle) * textRadius;
+
+                    const isLeft = xText < model.x;
+                    const extraLineX = isLeft ? -15 : 15;
+
+                    // Draw Line
+                    ctx.beginPath();
+                    ctx.moveTo(xEdge, yEdge);
+                    ctx.lineTo(xLine, yLine);
+                    ctx.lineTo(xLine + extraLineX, yLine);
+                    ctx.strokeStyle = '#666';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+
+                    // Draw Text
+                    const dataItem = usersChartDataJson[index];
+                    const labelText = dataItem.label;
+                    const valueText = dataItem.value + '%';
+
+                    const textPosX = xLine + extraLineX + (isLeft ? -5 : 5);
+
+                    ctx.textAlign = isLeft ? 'right' : 'left';
+                    ctx.textBaseline = 'middle';
+
+                    // Label (Urbanist, 400, 11px)
+                    ctx.font = '400 11px Urbanist';
+                    ctx.fillStyle = '#232323';
+                    ctx.fillText(labelText, textPosX, yLine - 7);
+
+                    // Value (Urbanist, 600, 11px)
+                    ctx.fillStyle = '#666';
+                    ctx.font = '600 11px Urbanist';
+                    ctx.fillText(valueText, textPosX, yLine + 7);
+                });
+            });
+        }
+    };
+
+    let usersChartsInstances = [];
+
+    function renderUsersCharts() {
+        const container = document.getElementById('usersChartContainer');
+
+        // 1. ОЧИСТКА: Если графики уже есть, уничтожаем их экземпляры Chart.js
+        // Это важно, чтобы не забивать память и позволить анимации сыграть снова
+        if (usersChartsInstances.length > 0) {
+            usersChartsInstances.forEach(chartInstance => {
+                chartInstance.destroy();
+            });
+            usersChartsInstances = [];
+        }
+
+        // 2. Обнуляем HTML контейнера, чтобы создать canvas заново
+        container.innerHTML = '';
+
+        // 3. Создаем HTML разметку заново
+        container.innerHTML = `
+            <div class="users-chart__wrapper">
+                <div class="users-chart__item"><canvas id="userChart1"></canvas></div>
+                <div class="users-chart__item"><canvas id="userChart2"></canvas></div>
+            </div>
+        `;
+
+        const ctx1 = document.getElementById('userChart1').getContext('2d');
+        const ctx2 = document.getElementById('userChart2').getContext('2d');
+
+        const labels = usersChartDataJson.map(d => d.label);
+        const dataValues = usersChartDataJson.map(d => d.value);
+        const backgroundColors = usersChartDataJson.map(d => d.color);
+
+        const config = {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: dataValues,
+                    backgroundColor: backgroundColors,
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                layout: {
+                    padding: 40
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: true },
+                    outsideLabels: true
+                },
+                cutout: '50%',
+                // Анимация будет срабатывать, так как мы создаем чарт с нуля
+                animation: {
+                    animateScale: true,
+                    animateRotate: true,
+                    duration: 1500, // 1.5 секунды анимации
+                    easing: 'easeOutQuart'
+                }
+            },
+            plugins: [outsideLabelsPlugin]
+        };
+
+        // Создаем новые экземпляры и сохраняем их в массив
+        usersChartsInstances.push(new Chart(ctx1, config));
+
+        const config2 = JSON.parse(JSON.stringify(config));
+        config2.plugins = [outsideLabelsPlugin];
+
+        usersChartsInstances.push(new Chart(ctx2, config2));
+    }
+
+
+    /* ==========================================================================
+       6. LINE CHART (ORIGINAL)
+       ========================================================================== */
     const lineChartCtx = document.getElementById('approvalApprovalAmountChart');
 
     if (lineChartCtx) {
         const initialData = dashboardData[currentDataType].lineChartData;
-        const MAX_CHART_VALUE = 1000000; // 1M
-
-        // Лейблы с годом под месяцем
+        const MAX_CHART_VALUE = 1000000;
         const labelsWithYear = initialData.labels.map(month => [month, '2025']);
 
         new Chart(lineChartCtx, {
@@ -319,42 +441,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     label: 'Funded Amount',
                     data: initialData.funded,
-                    // ЦВЕТ 1: #00A488 (Teal)
                     borderColor: '#00A488',
                     borderWidth: 3,
                     tension: 0,
-                    fill: false, // Без заливки
-
-                    // Точки (обычное состояние)
+                    fill: false,
                     pointRadius: 3,
                     pointBackgroundColor: '#fff',
                     pointBorderColor: '#00A488',
                     pointBorderWidth: 3,
-
-                    // ХОВЕР (ВЕРНУЛ СТАРЫЙ)
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#232323', // Темная обводка при наведении
+                    pointHoverBorderColor: '#232323',
                     pointHoverBorderWidth: 3,
                 }, {
                     label: 'Goal Amount',
                     data: initialData.goal,
-                    // ЦВЕТ 2: #6BA31D (Olive)
                     borderColor: '#6BA31D',
                     borderWidth: 3,
                     tension: 0,
-                    fill: false, // Без заливки
-
-                    // Точки (обычное состояние)
+                    fill: false,
                     pointRadius: 3,
                     pointBackgroundColor: '#fff',
                     pointBorderColor: '#6BA31D',
                     pointBorderWidth: 3,
-
-                    // ХОВЕР (ВЕРНУЛ СТАРЫЙ)
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#232323', // Темная обводка при наведении
+                    pointHoverBorderColor: '#232323',
                     pointHoverBorderWidth: 3,
                 }]
             },
@@ -366,7 +478,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     legend: { display: false },
                     tooltip: {
                         enabled: false,
-                        // Твой кастомный тултип
                         external: function (context) {
                             let tooltipEl = document.getElementById('chartjs-tooltip');
                             if (!tooltipEl) {
@@ -411,11 +522,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         max: MAX_CHART_VALUE,
                         min: 0,
                         border: { dash: [4, 4] },
-                        grid: {
-                            color: '#E8E9E8',
-                            drawBorder: false,
-                            tickLength: 0
-                        },
+                        grid: { color: '#E8E9E8', drawBorder: false, tickLength: 0 },
                         ticks: {
                             stepSize: 250000,
                             padding: 15,
@@ -430,23 +537,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     x: {
                         border: { dash: [4, 4] },
-                        grid: {
-                            color: '#E8E9E8',
-                            drawBorder: false,
-                            tickLength: 0
-                        },
-                        ticks: {
-                            padding: 10,
-                            font: { size: 11, family: "'Inter', sans-serif" },
-                            color: '#808080'
-                        }
+                        grid: { color: '#E8E9E8', drawBorder: false, tickLength: 0 },
+                        ticks: { padding: 10, font: { size: 11, family: "'Inter', sans-serif" }, color: '#808080' }
                     }
                 }
             }
         });
     }
 
-    // --- ANIMATIONS (PRESERVED) ---
+    /* ==========================================================================
+       7. ANIMATIONS
+       ========================================================================== */
     function animateValue(id, start, end, duration, isFull) {
         const obj = document.getElementById(id);
         if (!obj) return;
@@ -456,20 +557,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             const val = Math.floor(progress * (end - start) + start);
 
-            // === ИЗМЕНЕНИЯ ТУТ ===
-            // Если ID содержит "previous-total", выводим просто число без $ и k
             if (id.includes('previous-total')) {
-                // Используем Intl.NumberFormat, чтобы большие числа (1000+) были с запятыми (1,000)
                 obj.textContent = new Intl.NumberFormat('en-US').format(val);
             } else {
-                // Для остальных оставляем логику валюты
                 if (isFull) {
                     obj.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
                 } else {
                     obj.textContent = `$${Math.round(val / 1000)}k`;
                 }
             }
-            // =====================
 
             if (progress < 1) window.requestAnimationFrame(step);
         };
@@ -484,27 +580,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const pct = (goal.currentValue / goal.maxValue) * 100;
                 circle.style.setProperty('--p', pct);
 
-                // Animate Numbers
                 animateValue(`${goal.label}-value`, 0, goal.currentValue, 1500, false);
                 animateValue(`${goal.label}-full-value`, 0, goal.currentValue, 1500, true);
             }
         });
     }, 500);
 
-    // --- UPDATE STATS TEXT ---
     function updateStats(data) {
         const fmt = v => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(v);
         document.getElementById('stats-concluded-value').textContent = fmt(data.concluded.value);
         document.getElementById('stats-concluded-count').textContent = data.concluded.count;
         document.getElementById('stats-concluded-total-value').textContent = fmt(data.concluded.value);
 
-        document.getElementById('stats-killed-value').textContent = fmt(data.killed.value);
         document.getElementById('stats-killed-count').textContent = data.killed.count;
-        document.getElementById('stats-killed-total-value').textContent = fmt(data.killed.value);
     }
     updateStats(dashboardData[currentDataType].statsData);
 
-    // --- TABLE RENDER ---
+    /* ==========================================================================
+       8. TABLE RENDER
+       ========================================================================== */
     function renderTable(data) {
         const container = document.getElementById('tableContainer');
         container.innerHTML = '';
@@ -542,16 +636,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         table.appendChild(body);
 
-        // Footer (Placeholder for total)
         const footer = document.createElement('div');
         footer.className = 'table__footer';
-        footer.innerHTML = `<div class="table__cell">Total</div><div class="table__cell">${fmt(2000000)}</div>`; // Example total
+        footer.innerHTML = `<div class="table__cell">Total</div><div class="table__cell">${fmt(2000000)}</div>`;
         table.appendChild(footer);
 
         container.appendChild(table);
     }
 
-    // --- TABS SWITCHER ---
+    /* ==========================================================================
+       9. TABS SWITCHER (UPDATED)
+       ========================================================================== */
     const lineView = document.getElementById('lineChartContainer');
     const usersView = document.getElementById('usersChartContainer');
     const tableView = document.getElementById('tableContainer');
@@ -566,7 +661,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [lineView, usersView, tableView].forEach(el => el.classList.add('hidden'));
         [btnLine, btnUsers, btnTable].forEach(el => el.classList.remove('approval__switch-btn--active'));
 
-        if (statsRow) statsRow.classList.add('hidden'); // Hide stats for table/users view by default in your logic
+        if (statsRow) statsRow.classList.add('hidden');
 
         if (view === 'line') {
             lineView.classList.remove('hidden');
@@ -575,6 +670,13 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (view === 'users') {
             usersView.classList.remove('hidden');
             btnUsers.classList.add('approval__switch-btn--active');
+
+            // ВАЖНО: Мы больше не проверяем, пустой ли контейнер.
+            // Мы просто вызываем функцию рендера, которая сама всё очистит и перезапустит анимацию.
+            setTimeout(() => {
+                renderUsersCharts();
+            }, 50);
+
         } else if (view === 'table') {
             tableView.classList.remove('hidden');
             btnTable.classList.add('approval__switch-btn--active');
