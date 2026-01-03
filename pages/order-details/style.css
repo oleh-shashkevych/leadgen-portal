@@ -13,15 +13,19 @@
 }
 
 .data-table {
-    /* min-width: 1680px; */
+    min-width: 1500px;
     width: 100%;
+}
+
+.data-table__header .data-table__cell {
+    padding-block: 8px;
 }
 
 .data-table__header,
 .data-table__row {
     display: grid;
     /* Збільшено кількість колонок, відкориговано ширину */
-    grid-template-columns: 35px 1fr 0.9fr 1fr 1.2fr 130px 0.8fr 60px 80px 60px 100px 100px 100px 70px;
+    grid-template-columns: 35px 1fr 0.9fr 1fr 1.2fr 130px 0.9fr 60px 80px 60px 100px 100px 100px 70px;
     gap: 10px;
     align-items: center;
 }
