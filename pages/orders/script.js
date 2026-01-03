@@ -267,13 +267,13 @@ document.addEventListener('DOMContentLoaded', () => {
         direct: {
             lineChartData: {
                 labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-                funded: [250000, 420000, 300000, 450000, 190000, 440610, 280000, 180000, 95000, 280000, 398000, 250000],
-                goal: [280000, 470000, 340000, 480000, 220000, 470000, 310000, 210000, 130000, 320000, 430000, 290000]
+                funded: [250000, 250000, 600000, 50000, 730000, 350000, 800000, 530000, 500000, 760000, 80000, 50000],
+                goal: [660000, 760000, 80000, 740000, 620000, 450000, 250000, 300000, 970000, 80000, 740000, 50000]
             },
             goalsData: [
                 { label: 'monthly-goal', currentValue: 440610.37, maxValue: 500000 },
                 { label: 'amount-funded', currentValue: 480000, maxValue: 500000 },
-                { label: 'previous-total', currentValue: 460000, maxValue: 500000 }
+                { label: 'previous-total', currentValue: 600, maxValue: 1000 }
             ],
             statsData: {
                 concluded: { value: 2500000, count: 24, optionPercent: 5 },
@@ -302,60 +302,59 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    // --- CHART.JS INIT WITH CUSTOM TOOLTIP ---
+    // --- CHART.JS INIT (UPDATED DESIGN + ORIGINAL HOVER) ---
     const lineChartCtx = document.getElementById('approvalApprovalAmountChart');
 
     if (lineChartCtx) {
         const initialData = dashboardData[currentDataType].lineChartData;
-        const MAX_CHART_VALUE = 500000;
+        const MAX_CHART_VALUE = 1000000; // 1M
+
+        // Лейблы с годом под месяцем
+        const labelsWithYear = initialData.labels.map(month => [month, '2025']);
 
         new Chart(lineChartCtx, {
             type: 'line',
             data: {
-                labels: initialData.labels,
+                labels: labelsWithYear,
                 datasets: [{
                     label: 'Funded Amount',
                     data: initialData.funded,
-                    fill: true,
-                    borderColor: '#159C2A',
+                    // ЦВЕТ 1: #00A488 (Teal)
+                    borderColor: '#00A488',
                     borderWidth: 3,
                     tension: 0,
-                    backgroundColor: context => {
-                        const ctx = context.chart.ctx;
-                        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                        gradient.addColorStop(0, 'rgba(21, 156, 42, 0.4)');
-                        gradient.addColorStop(1, 'rgba(21, 156, 42, 0)');
-                        return gradient;
-                    },
+                    fill: false, // Без заливки
+
+                    // Точки (обычное состояние)
                     pointRadius: 3,
                     pointBackgroundColor: '#fff',
-                    pointBorderColor: '#159C2A',
+                    pointBorderColor: '#00A488',
                     pointBorderWidth: 3,
+
+                    // ХОВЕР (ВЕРНУЛ СТАРЫЙ)
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#232323',
+                    pointHoverBorderColor: '#232323', // Темная обводка при наведении
                     pointHoverBorderWidth: 3,
                 }, {
                     label: 'Goal Amount',
                     data: initialData.goal,
-                    fill: true,
-                    borderColor: '#4242f5',
+                    // ЦВЕТ 2: #6BA31D (Olive)
+                    borderColor: '#6BA31D',
                     borderWidth: 3,
                     tension: 0,
-                    backgroundColor: context => {
-                        const ctx = context.chart.ctx;
-                        const gradient = ctx.createLinearGradient(0, 0, 0, 300);
-                        gradient.addColorStop(0, 'rgba(66, 66, 245, 0.4)');
-                        gradient.addColorStop(1, 'rgba(66, 66, 245, 0)');
-                        return gradient;
-                    },
+                    fill: false, // Без заливки
+
+                    // Точки (обычное состояние)
                     pointRadius: 3,
                     pointBackgroundColor: '#fff',
-                    pointBorderColor: '#4242f5',
+                    pointBorderColor: '#6BA31D',
                     pointBorderWidth: 3,
+
+                    // ХОВЕР (ВЕРНУЛ СТАРЫЙ)
                     pointHoverRadius: 5,
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#232323',
+                    pointHoverBorderColor: '#232323', // Темная обводка при наведении
                     pointHoverBorderWidth: 3,
                 }]
             },
@@ -365,9 +364,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 interaction: { mode: 'index', intersect: false },
                 plugins: {
                     legend: { display: false },
-                    // CUSTOM TOOLTIP LOGIC (PRESERVED)
                     tooltip: {
                         enabled: false,
+                        // Твой кастомный тултип
                         external: function (context) {
                             let tooltipEl = document.getElementById('chartjs-tooltip');
                             if (!tooltipEl) {
@@ -410,12 +409,37 @@ document.addEventListener('DOMContentLoaded', () => {
                     y: {
                         beginAtZero: true,
                         max: MAX_CHART_VALUE,
-                        grid: { drawBorder: false, color: ctx => (ctx.tick.value === 0 || ctx.tick.value === MAX_CHART_VALUE) ? 'transparent' : '#EEEEEE' },
-                        ticks: { callback: val => val === 500000 ? '500K' : (val > 0 ? `${val / 1000}K` : '0'), padding: 10, font: { size: 12 } }
+                        min: 0,
+                        border: { dash: [4, 4] },
+                        grid: {
+                            color: '#E8E9E8',
+                            drawBorder: false,
+                            tickLength: 0
+                        },
+                        ticks: {
+                            stepSize: 250000,
+                            padding: 15,
+                            font: { size: 12, family: "'Inter', sans-serif" },
+                            color: '#808080',
+                            callback: function (value) {
+                                if (value === 0) return '0';
+                                if (value === 1000000) return '1M';
+                                return (value / 1000) + 'K';
+                            }
+                        }
                     },
                     x: {
-                        grid: { drawBorder: false, color: ctx => (ctx.index === 0 || ctx.index === initialData.labels.length - 1) ? 'transparent' : '#CDE3D0' },
-                        ticks: { padding: 10, font: { size: 12 } }
+                        border: { dash: [4, 4] },
+                        grid: {
+                            color: '#E8E9E8',
+                            drawBorder: false,
+                            tickLength: 0
+                        },
+                        ticks: {
+                            padding: 10,
+                            font: { size: 11, family: "'Inter', sans-serif" },
+                            color: '#808080'
+                        }
                     }
                 }
             }
@@ -432,11 +456,21 @@ document.addEventListener('DOMContentLoaded', () => {
             const progress = Math.min((timestamp - startTimestamp) / duration, 1);
             const val = Math.floor(progress * (end - start) + start);
 
-            if (isFull) {
-                obj.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+            // === ИЗМЕНЕНИЯ ТУТ ===
+            // Если ID содержит "previous-total", выводим просто число без $ и k
+            if (id.includes('previous-total')) {
+                // Используем Intl.NumberFormat, чтобы большие числа (1000+) были с запятыми (1,000)
+                obj.textContent = new Intl.NumberFormat('en-US').format(val);
             } else {
-                obj.textContent = `$${Math.round(val / 1000)}k`;
+                // Для остальных оставляем логику валюты
+                if (isFull) {
+                    obj.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(val);
+                } else {
+                    obj.textContent = `$${Math.round(val / 1000)}k`;
+                }
             }
+            // =====================
+
             if (progress < 1) window.requestAnimationFrame(step);
         };
         window.requestAnimationFrame(step);
