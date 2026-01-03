@@ -35,8 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let sumApproval = 0;
         let sumRevenue = 0;
 
-        const rows = tableBody.querySelectorAll(".data-table__row");
+        // Берем все строки, КРОМЕ строки итогов
+        const rows = tableBody.querySelectorAll(".data-table__row:not(.data-table__row--total)");
+
         rows.forEach(row => {
+            // Если строка скрыта фильтром — пропускаем её
+            if (window.getComputedStyle(row).display === 'none') return;
+
             const appCell = row.querySelector('[data-field="approval"]');
             const revCell = row.querySelector('[data-field="revenue"]');
 
@@ -355,4 +360,232 @@ document.addEventListener("DOMContentLoaded", () => {
             modalDropdown.classList.remove("open");
         }
     });
+
+    /* =========================================
+       6. COLUMN FILTERS LOGIC (REAL FILTERING)
+    ========================================= */
+
+    const filterData = {
+        industry: [
+            "Construction",
+            "Trucking",
+            "Restaurant",
+            "Retail",
+            "Medical Services",
+            "IT & Software",
+            "Real Estate"
+        ],
+        revenue: [
+            "$0 - $10,000",
+            "$10,000 - $50,000",
+            "$50,000 - $100,000",
+            "$100,000 - $250,000",
+            "$250,000 - $500,000",
+            "$500,000+"
+        ]
+    };
+
+    // Глобальное состояние активных фильтров
+    let activeFilters = {
+        industry: [],
+        revenue: []
+    };
+
+    let activeDropdown = null;
+
+    // --- HELPER: Парсинг диапазона Revenue ---
+    function isRevenueInRange(revenueValue, rangeString) {
+        // revenueValue - это число (например 45000)
+        // rangeString - это строка типа "$10,000 - $50,000" или "$500,000+"
+
+        const cleanRange = rangeString.replace(/\$/g, '').replace(/,/g, '');
+
+        if (cleanRange.includes('+')) {
+            const min = parseFloat(cleanRange.replace('+', ''));
+            return revenueValue >= min;
+        }
+
+        const parts = cleanRange.split('-');
+        if (parts.length === 2) {
+            const min = parseFloat(parts[0]);
+            const max = parseFloat(parts[1]);
+            return revenueValue >= min && revenueValue < max; // или <=, зависит от логики
+        }
+
+        return false;
+    }
+
+    // --- MAIN: Функция применения фильтров к таблице ---
+    function applyFiltersToTable() {
+        const rows = tableBody.querySelectorAll(".data-table__row:not(.data-table__row--total)");
+
+        rows.forEach(row => {
+            // 1. Получаем данные строки
+            // Industry - 3-я ячейка (индекс 2)
+            // Revenue - 7-я ячейка (индекс 6). Внимание: там текст "$45,000", нужно распарсить.
+
+            const cells = row.querySelectorAll('.data-table__cell');
+            const industryText = cells[2].textContent.trim();
+            const revenueText = cells[6].textContent.trim();
+            const revenueVal = parseMoney(revenueText); // Используем существующую функцию parseMoney
+
+            // 2. Проверка Industry
+            let industryMatch = true;
+            if (activeFilters.industry.length > 0) {
+                // Если в фильтре что-то выбрано, строка должна совпадать хотя бы с одним значением
+                // Используем includes для частичного совпадения или строгое равенство
+                // Тут сделаем поиск: входит ли текст ячейки в массив выбранных
+                industryMatch = activeFilters.industry.some(filter => industryText.includes(filter));
+            }
+
+            // 3. Проверка Revenue
+            let revenueMatch = true;
+            if (activeFilters.revenue.length > 0) {
+                // Строка должна попадать хотя бы в один из выбранных диапазонов
+                revenueMatch = activeFilters.revenue.some(range => isRevenueInRange(revenueVal, range));
+            }
+
+            // 4. Показываем или скрываем
+            if (industryMatch && revenueMatch) {
+                row.style.display = "grid"; // Возвращаем grid, так как в CSS row - это grid
+            } else {
+                row.style.display = "none";
+            }
+        });
+
+        // После фильтрации обязательно пересчитываем итоги
+        calculateTotals();
+    }
+
+    // --- UI: Обновление кнопок (подсветка active) ---
+    function updateFilterButtonsUI() {
+        // Industry Button
+        const indBtn = document.querySelector('.data-table__cell[data-column="industry"] .filter-trigger');
+        if (activeFilters.industry.length > 0) indBtn.classList.add('active');
+        else indBtn.classList.remove('active');
+
+        // Revenue Button
+        const revBtn = document.querySelector('.data-table__cell[data-column="revenue"] .filter-trigger');
+        if (activeFilters.revenue.length > 0) revBtn.classList.add('active');
+        else revBtn.classList.remove('active');
+    }
+
+    // --- Функция генерации HTML (почти как раньше, но с восстановлением чекбоксов) ---
+    function createDropdownHTML(columnType, items) {
+        // Проверяем, какие пункты уже были выбраны ранее
+        const currentlySelected = activeFilters[columnType] || [];
+
+        const listItems = items.map(item => {
+            const isChecked = currentlySelected.includes(item) ? 'checked' : '';
+            return `
+            <div class="filter-option-item">
+                <input type="checkbox" id="filter-${columnType}-${item.replace(/\s/g, '')}" class="filter-option-input" value="${item}" ${isChecked}>
+                <label for="filter-${columnType}-${item.replace(/\s/g, '')}" class="filter-option-label">${item}</label>
+            </div>
+            `;
+        }).join('');
+
+        const dropdown = document.createElement('div');
+        dropdown.className = 'filter-dropdown-menu';
+        dropdown.setAttribute('data-for', columnType);
+
+        dropdown.innerHTML = `
+            <div class="filter-search-box">
+                <input type="text" placeholder="Search" class="filter-search-input">
+            </div>
+            <div class="filter-options-list">
+                ${listItems}
+            </div>
+            <div class="filter-actions">
+                <button class="filter-btn filter-btn-apply">Apply</button>
+                <button class="filter-btn filter-btn-reset">Reset</button>
+            </div>
+        `;
+
+        // Логика поиска
+        const searchInput = dropdown.querySelector('.filter-search-input');
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            const options = dropdown.querySelectorAll('.filter-option-item');
+            options.forEach(opt => {
+                const text = opt.querySelector('label').textContent.toLowerCase();
+                opt.style.display = text.includes(val) ? 'flex' : 'none';
+            });
+        });
+
+        // APPLY
+        dropdown.querySelector('.filter-btn-apply').addEventListener('click', () => {
+            const checkedInputs = dropdown.querySelectorAll('.filter-option-input:checked');
+            const values = Array.from(checkedInputs).map(input => input.value);
+
+            // Сохраняем в глобальный стейт
+            activeFilters[columnType] = values;
+
+            console.log("Filters Applied:", activeFilters);
+
+            // Запускаем фильтрацию и UI
+            applyFiltersToTable();
+            updateFilterButtonsUI();
+            removeActiveDropdown();
+        });
+
+        // RESET
+        dropdown.querySelector('.filter-btn-reset').addEventListener('click', () => {
+            // Очищаем стейт для этой колонки
+            activeFilters[columnType] = [];
+
+            // Сбрасываем чекбоксы визуально
+            dropdown.querySelectorAll('.filter-option-input').forEach(inp => inp.checked = false);
+
+            // Применяем пустой фильтр (показать всё)
+            applyFiltersToTable();
+            updateFilterButtonsUI();
+            removeActiveDropdown();
+        });
+
+        return dropdown;
+    }
+
+    function removeActiveDropdown() {
+        if (activeDropdown) {
+            activeDropdown.remove();
+            activeDropdown = null;
+        }
+    }
+
+    // Слушатели кнопок в заголовке
+    document.querySelectorAll('.data-table__cell--header.has-filter .filter-trigger').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const headerCell = btn.closest('.data-table__cell');
+            const columnType = headerCell.getAttribute('data-column');
+
+            if (activeDropdown && activeDropdown.getAttribute('data-for') === columnType) {
+                removeActiveDropdown();
+                return;
+            }
+            removeActiveDropdown();
+
+            const items = filterData[columnType] || [];
+            const dropdownEl = createDropdownHTML(columnType, items);
+
+            document.body.appendChild(dropdownEl);
+            activeDropdown = dropdownEl;
+
+            const rect = btn.getBoundingClientRect();
+            dropdownEl.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+            dropdownEl.style.left = (rect.left + window.scrollX) + 'px';
+            dropdownEl.classList.add('show');
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (activeDropdown && !activeDropdown.contains(e.target) && !e.target.closest('.filter-trigger')) {
+            removeActiveDropdown();
+        }
+    });
+
+    window.addEventListener('scroll', () => {
+        if (activeDropdown) removeActiveDropdown();
+    }, true);
 });

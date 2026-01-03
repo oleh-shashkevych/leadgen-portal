@@ -13,7 +13,7 @@
 }
 
 .data-table {
-    min-width: 1400px;
+    min-width: 1680px;
     width: 100%;
 }
 
@@ -282,4 +282,156 @@
     .metrics-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* === FILTER STYLES === */
+.data-table__cell--header.has-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.filter-trigger {
+    background: none;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.filter-trigger:hover,
+.filter-trigger.active {
+    background-color: #e0e0e0;
+}
+
+/* Dropdown Container */
+.filter-dropdown-menu {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #d2dad2;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    width: 280px;
+    z-index: 1000;
+    padding: 12px;
+    display: none;
+    /* JS will toggle this */
+    font-family: inherit;
+}
+
+.filter-dropdown-menu.show {
+    display: block;
+}
+
+/* Search Box */
+.filter-search-box {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.filter-search-box input {
+    width: 100%;
+    padding: 8px 30px 8px 10px;
+    border: 1px solid #d2dad2;
+    border-radius: 3px;
+    font-size: 14px;
+    outline: none;
+}
+
+.filter-search-box::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+}
+
+/* List Items */
+.filter-options-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 12px;
+}
+
+.filter-option-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    cursor: pointer;
+}
+
+.filter-option-item:hover {
+    background-color: #f9f9f9;
+}
+
+.filter-option-input {
+    margin-right: 10px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: var(--color-green-main, #159C2A);
+}
+
+.filter-option-label {
+    font-size: 13px;
+    color: #232323;
+    font-weight: 500;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+/* Footer Buttons */
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 8px;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+}
+
+.filter-btn:hover {
+    opacity: 0.9;
+}
+
+.filter-btn-apply {
+    background-color: var(--color-green-main, #159C2A);
+    color: #fff;
+}
+
+.filter-btn-reset {
+    background-color: #888;
+    color: #fff;
+}
+
+/* Стиль для активной кнопки фильтра (когда фильтр применен) */
+.filter-trigger svg path {
+    transition: all .3s ease;
+}
+
+.filter-trigger:hover svg path,
+.filter-trigger.active svg path {
+    fill: var(--color-green-main, #159C2A);
 }
