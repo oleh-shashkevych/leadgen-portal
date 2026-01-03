@@ -57,6 +57,51 @@
     background-color: var(--color-white);
 }
 
+.export-btn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+
+    background-color: #232323;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    z-index: 10;
+
+    margin-top: 10px;
+}
+
+.custom-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #232323 transparent;
+}
+
+.export-btn-wrapper:hover button:not(:disabled)+.custom-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
 .action-dropdown .dropdown-menu {
     padding: 0;
 }
@@ -351,5 +396,90 @@
     .approval-amount__graphs {
         flex-direction: row;
         flex-wrap: wrap;
+    }
+}
+
+.campaign-button {
+    padding: 9px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: var(--color-green-main);
+    color: #fff;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    transition: all .3s ease;
+}
+
+.campaign-button:hover {
+    background-color: var(--color-green-dark);
+}
+
+/* === METRICS GRID === */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    column-gap: 14px;
+    row-gap: 10px;
+    margin-bottom: 24px;
+
+}
+
+.metric-card {
+    padding: 19px 17px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.metric-card__title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    margin-bottom: 8px;
+
+}
+
+.metric-card__value {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 100%;
+    text-transform: uppercase;
+}
+
+/* === ЦВЕТА КАРТОЧЕК === */
+
+.metric-card:nth-child(4n + 1) {
+    background-color: #159C2A;
+}
+
+.metric-card:nth-child(4n + 2) {
+    background-color: #00A488;
+}
+
+.metric-card:nth-child(4n + 3) {
+    background-color: #6BA31D;
+}
+
+.metric-card:nth-child(4n + 4) {
+    background-color: #14AAC7;
+}
+
+@media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
     }
 }

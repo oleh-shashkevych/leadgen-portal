@@ -1,22 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lead Marketplace - LeadGen Portal</title>
 
-    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/main.css" />
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-
     <header class="header">
         <div class="header__left">
             <a href="../../index.html" class="logo">
-                <img src="../../assets/img/logo.svg" alt="LeadGen Portal" class="logo__img">
+                <img src="../../assets/img/logo.svg" alt="LeadGen Portal" class="logo__img" />
             </a>
 
             <button class="header__toggle" id="sidebarToggle" aria-label="Toggle Sidebar">
@@ -30,50 +29,55 @@
 
         <div class="header__right">
             <div class="header__balance">
-                <img src="../../assets/img/icons/balance.svg" alt="Balance" class="balance-icon">
+                <img src="../../assets/img/icons/balance.svg" alt="Balance" class="balance-icon" />
                 <span class="balance-text">ex. $23,656</span>
             </div>
 
             <button type="button" class="header__buy-btn">Buy More</button>
 
             <button type="button" class="header__notification" aria-label="Notifications">
-                <img src="../../assets/img/icons/notification.svg" alt="" class="notification-icon">
+                <img src="../../assets/img/icons/notification.svg" alt="" class="notification-icon" />
                 <span class="notification-dot"></span>
             </button>
         </div>
     </header>
 
     <div class="layout">
-
         <aside class="sidebar layout__sidebar" id="sidebar">
             <nav class="sidebar__nav">
                 <ul class="nav-list">
                     <li class="nav-item">
                         <a href="#" class="nav-link active">
-                            <span class="nav-icon" style="--icon-url: url('/../../assets/img/icons/house.svg');"></span>
+                            <span class="nav-icon" style="
+                                        --icon-url: url(&quot;/../../assets/img/icons/house.svg&quot;);
+                                    "></span>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <span class="nav-icon"
-                                style="--icon-url: url('/../../assets/img/icons/list-with-check.svg');"></span>
+                            <span class="nav-icon" style="
+                                        --icon-url: url(&quot;/../../assets/img/icons/list-with-check.svg&quot;);
+                                    "></span>
                             <span class="nav-text">Orders</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <span class="nav-icon" style="--icon-url: url('/../../assets/img/icons/graph.svg');"></span>
+                            <span class="nav-icon" style="
+                                        --icon-url: url(&quot;/../../assets/img/icons/graph.svg&quot;);
+                                    "></span>
                             <span class="nav-text">Analytics</span>
                         </a>
                     </li>
 
                     <li class="nav-item">
                         <a href="#" class="nav-link">
-                            <span class="nav-icon"
-                                style="--icon-url: url('/../../assets/img/icons/settings.svg');"></span>
+                            <span class="nav-icon" style="
+                                        --icon-url: url(&quot;/../../assets/img/icons/settings.svg&quot;);
+                                    "></span>
                             <span class="nav-text">Settings</span>
                         </a>
                     </li>
@@ -85,16 +89,20 @@
 
                 <div class="workspace-card">
                     <div class="user-info-row">
-                        <img src="../../assets/img/avatars/avatar-1.png" alt="User" class="user-avatar">
+                        <img src="../../assets/img/avatars/avatar-1.png" alt="User" class="user-avatar" />
                         <div class="user-details">
                             <div class="user-name">Jonathan</div>
                             <div class="user-role">Credit Analyst</div>
-                            <div class="user-email">jonathan@fundshop.com</div>
+                            <div class="user-email">
+                                jonathan@fundshop.com
+                            </div>
                         </div>
                     </div>
 
                     <button class="logout-btn">
-                        <span class="logout-icon" style="--icon-url: url('/../../assets/img/icons/login.svg');"></span>
+                        <span class="logout-icon" style="
+                                    --icon-url: url(&quot;/../../assets/img/icons/login.svg&quot;);
+                                "></span>
                         <span class="logout-text">Logout</span>
                     </button>
                 </div>
@@ -105,63 +113,184 @@
             <div class="page-container">
                 <h1 class="page-title">Orders Details</h1>
 
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-card__title">Total sales</div>
+                        <div class="metric-card__value">5,4M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Win rate</div>
+                        <div class="metric-card__value">16,90%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Close rate</div>
+                        <div class="metric-card__value">14,33%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Avg days to close</div>
+                        <div class="metric-card__value">60.70</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-card__title">Pipeline Value</div>
+                        <div class="metric-card__value">75,1M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Open Deals</div>
+                        <div class="metric-card__value">1,6K</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Weighted Value</div>
+                        <div class="metric-card__value">35.7M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Avg Open Deal Age</div>
+                        <div class="metric-card__value">200.64</div>
+                    </div>
+                </div>
+
                 <div class="orders__wrapper">
                     <div class="orders__wrapper-top">
                         <div class="search-wrapper">
-                            <span class="search-icon"
-                                style="--icon-url: url('/../../assets/img/icons/search.svg');"></span>
-                            <input type="text" placeholder="Search" class="search-input">
+                            <span class="search-icon" style="
+                                        --icon-url: url(&quot;/../../assets/img/icons/search.svg&quot;);
+                                    "></span>
+                            <input type="text" placeholder="Search" class="search-input" />
                         </div>
+                        <button type="button" class="campaign-button">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1532_1655)">
+                                    <path
+                                        d="M15 5.99093H8.50571V-0.5H6.49093V5.99093H0V8.00571H6.49093V14.5H8.50571V8.00571H15V5.99093Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1532_1655">
+                                        <rect width="15" height="15" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            Create Campaign
+                        </button>
                     </div>
 
                     <div class="data-table">
                         <div class="data-table__header">
                             <div class="data-table__cell data-table__cell--checkbox">
-                                <div class="checkbox-item" id="checkAll"><input type="checkbox"
-                                        class="checkbox-item__input"></div>
+                                <div class="checkbox-item" id="checkAll">
+                                    <input type="checkbox" class="checkbox-item__input" />
+                                </div>
                             </div>
-                            <div class="data-table__cell">Business Name</div>
-                            <div class="data-table__cell">Merchant's Name</div>
+                            <div class="data-table__cell">
+                                Business Name
+                            </div>
+                            <div class="data-table__cell">
+                                Merchant's Name
+                            </div>
                             <div class="data-table__cell">Email</div>
                             <div class="data-table__cell">Phone</div>
-                            <div class="data-table__cell">Monthly Revenue</div>
+                            <div class="data-table__cell">
+                                Monthly Revenue
+                            </div>
                             <div class="data-table__cell">FICO</div>
                             <div class="data-table__cell">TIB</div>
+                            <div class="data-table__cell">Files</div>
                             <div class="data-table__cell">Status</div>
-                            <div class="data-table__cell data-table__cell--actions">Actions</div>
+                            <div class="data-table__cell data-table__cell--actions">
+                                Actions
+                            </div>
                         </div>
 
                         <div class="data-table__body" id="tableBody">
-
                             <div class="data-table__row" data-id="dtl_101">
                                 <div class="data-table__cell data-table__cell--checkbox">
                                     <div class="checkbox-item row-checkbox">
-                                        <input type="checkbox" class="checkbox-item__input">
+                                        <input type="checkbox" class="checkbox-item__input" />
                                     </div>
                                 </div>
-                                <div class="data-table__cell">NovaTrade Solutions</div>
-                                <div class="data-table__cell">Daniel Carter</div>
-                                <div class="data-table__cell"><a
-                                        href="mailto:daniel.carter@novatrade.com">daniel.carter@novatrade.com</a></div>
-                                <div class="data-table__cell">+1 (202) 555-0149</div>
+                                <div class="data-table__cell">
+                                    NovaTrade Solutions
+                                </div>
+                                <div class="data-table__cell">
+                                    Daniel Carter
+                                </div>
+                                <div class="data-table__cell">
+                                    <a href="mailto:daniel.carter@novatrade.com">daniel.carter@novatrade.com</a>
+                                </div>
+                                <div class="data-table__cell">
+                                    +1 (202) 555-0149
+                                </div>
                                 <div class="data-table__cell">$45,000</div>
                                 <div class="data-table__cell">456</div>
-                                <div class="data-table__cell">2Y, 2M, 4D</div>
+                                <div class="data-table__cell">
+                                    2Y, 2M, 4D
+                                </div>
+                                <div class="data-table__cell data-table__cell--files">
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2361)">
+                                            <path
+                                                d="M1.82031 8.50233V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path
+                                                d="M2.59321 10.4062H2.14062V11.93H2.5889C3.07382 11.93 3.35615 11.5765 3.35615 11.167C3.35615 10.7575 3.09968 10.4084 2.59321 10.4084V10.4062Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M5.78556 10.3672C5.32436 10.3672 5.03125 10.7163 5.03125 11.1689C5.03125 11.6215 5.32651 11.9706 5.78556 11.9706C6.24462 11.9706 6.53772 11.6172 6.53772 11.1689C6.53772 10.7206 6.24246 10.3672 5.78556 10.3672Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM2.59269 12.5513H1.42673V9.78409H2.58838C3.45907 9.78409 4.08623 10.3078 4.08623 11.1656C4.08623 12.0233 3.45907 12.5513 2.59269 12.5513ZM5.78451 12.6009C4.93753 12.6009 4.3039 12.0125 4.3039 11.1699C4.3039 10.3272 4.93968 9.73883 5.78451 9.73883C6.62935 9.73883 7.26297 10.3272 7.26297 11.1699C7.26297 12.0125 6.6315 12.6009 5.78451 12.6009ZM8.98065 11.9694C9.24574 11.9694 9.48281 11.7863 9.57333 11.5664L10.1876 11.8574C10.0087 12.2151 9.64876 12.6009 8.98065 12.6009C8.12935 12.6009 7.4828 12.019 7.4828 11.1699C7.4828 10.3207 8.12935 9.73883 8.98065 9.73883C9.64876 9.73883 10.0065 10.116 10.1876 10.4824L9.57333 10.7733C9.48281 10.5535 9.24574 10.3703 8.98065 10.3703C8.52806 10.3703 8.2091 10.7194 8.2091 11.172C8.2091 11.6246 8.52806 11.9738 8.98065 11.9738V11.9694Z"
+                                                fill="#0461A0" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2361">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2368)">
+                                            <path
+                                                d="M1.82031 8.50234V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" />
+                                            <path
+                                                d="M3.1479 10.4045H2.57031V10.9972H3.1479C3.33971 10.9972 3.4798 10.8894 3.4798 10.7019C3.4798 10.5144 3.33971 10.4023 3.1479 10.4023V10.4045Z"
+                                                fill="#D62E2E" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM3.24355 11.6225H2.57114V12.5513H1.85777V9.78409H3.24355C3.8664 9.78409 4.20692 10.2022 4.20692 10.7043C4.20692 11.2065 3.8664 11.6225 3.24355 11.6225ZM5.69184 12.5513H4.52589V9.78409H5.68753C6.55823 9.78409 7.18539 10.3078 7.18539 11.1656C7.18539 12.0233 6.55823 12.5513 5.69184 12.5513ZM9.57117 10.4048H8.25651V10.8358H9.54316V11.4587H8.25651V12.5492H7.54315V9.78193H9.57333V10.4048H9.57117Z"
+                                                fill="#D62E2E" />
+                                            <path
+                                                d="M5.69087 10.4062H5.23828V11.93H5.68656C6.17148 11.93 6.45381 11.5765 6.45381 11.167C6.45381 10.7575 6.19734 10.4084 5.69087 10.4084V10.4062Z"
+                                                fill="#D62E2E" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2368">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <div class="data-table__cell data-table__cell--status">
                                     <div class="status-wrapper">
                                         <span class="status-badge status-badge--prospect">PROSPECT</span>
-                                        <button class="btn-edit-status">
-
-                                        </button>
+                                        <button class="btn-edit-status"></button>
                                     </div>
                                 </div>
                                 <div class="data-table__cell data-table__cell--actions">
                                     <div class="custom-dropdown action-dropdown">
-                                        <button
-                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <button class="btn-actions dropdown-trigger">
+                                            <span></span><span></span><span></span>
+                                        </button>
                                         <div class="dropdown-menu">
-                                            <div class="dropdown-option" data-action="edit"><span
-                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option" data-action="edit">
+                                                <span class="option-text">Edit</span>
+                                            </div>
                                             <div class="dropdown-option dropdown-option--delete" data-action="delete">
                                                 <span class="option-text">Delete</span>
                                             </div>
@@ -173,32 +302,67 @@
                             <div class="data-table__row" data-id="dtl_102">
                                 <div class="data-table__cell data-table__cell--checkbox">
                                     <div class="checkbox-item row-checkbox">
-                                        <input type="checkbox" class="checkbox-item__input">
+                                        <input type="checkbox" class="checkbox-item__input" />
                                     </div>
                                 </div>
-                                <div class="data-table__cell">GreenPath Logistics</div>
-                                <div class="data-table__cell">Oliver Thompson</div>
-                                <div class="data-table__cell"><a
-                                        href="mailto:oliver.t@skybridge.com">oliver.t@skybridge.com</a></div>
-                                <div class="data-table__cell">+1 (415) 555-9134</div>
+                                <div class="data-table__cell">
+                                    GreenPath Logistics
+                                </div>
+                                <div class="data-table__cell">
+                                    Oliver Thompson
+                                </div>
+                                <div class="data-table__cell">
+                                    <a href="mailto:oliver.t@skybridge.com">oliver.t@skybridge.com</a>
+                                </div>
+                                <div class="data-table__cell">
+                                    +1 (415) 555-9134
+                                </div>
                                 <div class="data-table__cell">$5,000</div>
                                 <div class="data-table__cell">232</div>
-                                <div class="data-table__cell">21Y, 3M, 1D</div>
+                                <div class="data-table__cell">
+                                    21Y, 3M, 1D
+                                </div>
+                                <div class="data-table__cell data-table__cell--files">
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2361)">
+                                            <path
+                                                d="M1.82031 8.50233V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path
+                                                d="M2.59321 10.4062H2.14062V11.93H2.5889C3.07382 11.93 3.35615 11.5765 3.35615 11.167C3.35615 10.7575 3.09968 10.4084 2.59321 10.4084V10.4062Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M5.78556 10.3672C5.32436 10.3672 5.03125 10.7163 5.03125 11.1689C5.03125 11.6215 5.32651 11.9706 5.78556 11.9706C6.24462 11.9706 6.53772 11.6172 6.53772 11.1689C6.53772 10.7206 6.24246 10.3672 5.78556 10.3672Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM2.59269 12.5513H1.42673V9.78409H2.58838C3.45907 9.78409 4.08623 10.3078 4.08623 11.1656C4.08623 12.0233 3.45907 12.5513 2.59269 12.5513ZM5.78451 12.6009C4.93753 12.6009 4.3039 12.0125 4.3039 11.1699C4.3039 10.3272 4.93968 9.73883 5.78451 9.73883C6.62935 9.73883 7.26297 10.3272 7.26297 11.1699C7.26297 12.0125 6.6315 12.6009 5.78451 12.6009ZM8.98065 11.9694C9.24574 11.9694 9.48281 11.7863 9.57333 11.5664L10.1876 11.8574C10.0087 12.2151 9.64876 12.6009 8.98065 12.6009C8.12935 12.6009 7.4828 12.019 7.4828 11.1699C7.4828 10.3207 8.12935 9.73883 8.98065 9.73883C9.64876 9.73883 10.0065 10.116 10.1876 10.4824L9.57333 10.7733C9.48281 10.5535 9.24574 10.3703 8.98065 10.3703C8.52806 10.3703 8.2091 10.7194 8.2091 11.172C8.2091 11.6246 8.52806 11.9738 8.98065 11.9738V11.9694Z"
+                                                fill="#0461A0" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2361">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <div class="data-table__cell data-table__cell--status">
                                     <div class="status-wrapper">
                                         <span class="status-badge status-badge--approved">APPROVED</span>
-                                        <button class="btn-edit-status">
-
-                                        </button>
+                                        <button class="btn-edit-status"></button>
                                     </div>
                                 </div>
                                 <div class="data-table__cell data-table__cell--actions">
                                     <div class="custom-dropdown action-dropdown">
-                                        <button
-                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <button class="btn-actions dropdown-trigger">
+                                            <span></span><span></span><span></span>
+                                        </button>
                                         <div class="dropdown-menu">
-                                            <div class="dropdown-option" data-action="edit"><span
-                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option" data-action="edit">
+                                                <span class="option-text">Edit</span>
+                                            </div>
                                             <div class="dropdown-option dropdown-option--delete" data-action="delete">
                                                 <span class="option-text">Delete</span>
                                             </div>
@@ -210,32 +374,67 @@
                             <div class="data-table__row" data-id="dtl_103">
                                 <div class="data-table__cell data-table__cell--checkbox">
                                     <div class="checkbox-item row-checkbox">
-                                        <input type="checkbox" class="checkbox-item__input">
+                                        <input type="checkbox" class="checkbox-item__input" />
                                     </div>
                                 </div>
-                                <div class="data-table__cell">SkyBridge Consulting</div>
-                                <div class="data-table__cell">Daniel Carter</div>
-                                <div class="data-table__cell"><a
-                                        href="mailto:daniel.carter@novatrade.com">daniel.carter@novatrade.com</a></div>
-                                <div class="data-table__cell">+1 (202) 555-0149</div>
+                                <div class="data-table__cell">
+                                    SkyBridge Consulting
+                                </div>
+                                <div class="data-table__cell">
+                                    Daniel Carter
+                                </div>
+                                <div class="data-table__cell">
+                                    <a href="mailto:daniel.carter@novatrade.com">daniel.carter@novatrade.com</a>
+                                </div>
+                                <div class="data-table__cell">
+                                    +1 (202) 555-0149
+                                </div>
                                 <div class="data-table__cell">$1,100</div>
                                 <div class="data-table__cell">531</div>
-                                <div class="data-table__cell">1Y, 5M, 9D</div>
+                                <div class="data-table__cell">
+                                    1Y, 5M, 9D
+                                </div>
+                                <div class="data-table__cell data-table__cell--files">
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2361)">
+                                            <path
+                                                d="M1.82031 8.50233V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path
+                                                d="M2.59321 10.4062H2.14062V11.93H2.5889C3.07382 11.93 3.35615 11.5765 3.35615 11.167C3.35615 10.7575 3.09968 10.4084 2.59321 10.4084V10.4062Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M5.78556 10.3672C5.32436 10.3672 5.03125 10.7163 5.03125 11.1689C5.03125 11.6215 5.32651 11.9706 5.78556 11.9706C6.24462 11.9706 6.53772 11.6172 6.53772 11.1689C6.53772 10.7206 6.24246 10.3672 5.78556 10.3672Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM2.59269 12.5513H1.42673V9.78409H2.58838C3.45907 9.78409 4.08623 10.3078 4.08623 11.1656C4.08623 12.0233 3.45907 12.5513 2.59269 12.5513ZM5.78451 12.6009C4.93753 12.6009 4.3039 12.0125 4.3039 11.1699C4.3039 10.3272 4.93968 9.73883 5.78451 9.73883C6.62935 9.73883 7.26297 10.3272 7.26297 11.1699C7.26297 12.0125 6.6315 12.6009 5.78451 12.6009ZM8.98065 11.9694C9.24574 11.9694 9.48281 11.7863 9.57333 11.5664L10.1876 11.8574C10.0087 12.2151 9.64876 12.6009 8.98065 12.6009C8.12935 12.6009 7.4828 12.019 7.4828 11.1699C7.4828 10.3207 8.12935 9.73883 8.98065 9.73883C9.64876 9.73883 10.0065 10.116 10.1876 10.4824L9.57333 10.7733C9.48281 10.5535 9.24574 10.3703 8.98065 10.3703C8.52806 10.3703 8.2091 10.7194 8.2091 11.172C8.2091 11.6246 8.52806 11.9738 8.98065 11.9738V11.9694Z"
+                                                fill="#0461A0" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2361">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <div class="data-table__cell data-table__cell--status">
                                     <div class="status-wrapper">
                                         <span class="status-badge status-badge--funded">FUNDED</span>
-                                        <button class="btn-edit-status">
-
-                                        </button>
+                                        <button class="btn-edit-status"></button>
                                     </div>
                                 </div>
                                 <div class="data-table__cell data-table__cell--actions">
                                     <div class="custom-dropdown action-dropdown">
-                                        <button
-                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <button class="btn-actions dropdown-trigger">
+                                            <span></span><span></span><span></span>
+                                        </button>
                                         <div class="dropdown-menu">
-                                            <div class="dropdown-option" data-action="edit"><span
-                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option" data-action="edit">
+                                                <span class="option-text">Edit</span>
+                                            </div>
                                             <div class="dropdown-option dropdown-option--delete" data-action="delete">
                                                 <span class="option-text">Delete</span>
                                             </div>
@@ -247,33 +446,91 @@
                             <div class="data-table__row" data-id="dtl_104">
                                 <div class="data-table__cell data-table__cell--checkbox">
                                     <div class="checkbox-item row-checkbox">
-                                        <input type="checkbox" class="checkbox-item__input">
+                                        <input type="checkbox" class="checkbox-item__input" />
                                     </div>
                                 </div>
-                                <div class="data-table__cell">BrightHive Marketing</div>
-                                <div class="data-table__cell">Emily Rogers</div>
-                                <div class="data-table__cell"><a
-                                        href="mailto:emily.rogers@brighthive.agency">emily.rogers@brighthive.agency</a>
+                                <div class="data-table__cell">
+                                    BrightHive Marketing
                                 </div>
-                                <div class="data-table__cell">+1 (202) 555-0149</div>
-                                <div class="data-table__cell">$1,245,000</div>
+                                <div class="data-table__cell">
+                                    Emily Rogers
+                                </div>
+                                <div class="data-table__cell">
+                                    <a href="mailto:emily.rogers@brighthive.agency">emily.rogers@brighthive.agency</a>
+                                </div>
+                                <div class="data-table__cell">
+                                    +1 (202) 555-0149
+                                </div>
+                                <div class="data-table__cell">
+                                    $1,245,000
+                                </div>
                                 <div class="data-table__cell">45</div>
                                 <div class="data-table__cell">2M, 14D</div>
+                                <div class="data-table__cell data-table__cell--files">
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2361)">
+                                            <path
+                                                d="M1.82031 8.50233V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" stroke-linecap="round" />
+                                            <path
+                                                d="M2.59321 10.4062H2.14062V11.93H2.5889C3.07382 11.93 3.35615 11.5765 3.35615 11.167C3.35615 10.7575 3.09968 10.4084 2.59321 10.4084V10.4062Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M5.78556 10.3672C5.32436 10.3672 5.03125 10.7163 5.03125 11.1689C5.03125 11.6215 5.32651 11.9706 5.78556 11.9706C6.24462 11.9706 6.53772 11.6172 6.53772 11.1689C6.53772 10.7206 6.24246 10.3672 5.78556 10.3672Z"
+                                                fill="#0461A0" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM2.59269 12.5513H1.42673V9.78409H2.58838C3.45907 9.78409 4.08623 10.3078 4.08623 11.1656C4.08623 12.0233 3.45907 12.5513 2.59269 12.5513ZM5.78451 12.6009C4.93753 12.6009 4.3039 12.0125 4.3039 11.1699C4.3039 10.3272 4.93968 9.73883 5.78451 9.73883C6.62935 9.73883 7.26297 10.3272 7.26297 11.1699C7.26297 12.0125 6.6315 12.6009 5.78451 12.6009ZM8.98065 11.9694C9.24574 11.9694 9.48281 11.7863 9.57333 11.5664L10.1876 11.8574C10.0087 12.2151 9.64876 12.6009 8.98065 12.6009C8.12935 12.6009 7.4828 12.019 7.4828 11.1699C7.4828 10.3207 8.12935 9.73883 8.98065 9.73883C9.64876 9.73883 10.0065 10.116 10.1876 10.4824L9.57333 10.7733C9.48281 10.5535 9.24574 10.3703 8.98065 10.3703C8.52806 10.3703 8.2091 10.7194 8.2091 11.172C8.2091 11.6246 8.52806 11.9738 8.98065 11.9738V11.9694Z"
+                                                fill="#0461A0" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2361">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2368)">
+                                            <path
+                                                d="M1.82031 8.50234V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" />
+                                            <path
+                                                d="M3.1479 10.4045H2.57031V10.9972H3.1479C3.33971 10.9972 3.4798 10.8894 3.4798 10.7019C3.4798 10.5144 3.33971 10.4023 3.1479 10.4023V10.4045Z"
+                                                fill="#D62E2E" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM3.24355 11.6225H2.57114V12.5513H1.85777V9.78409H3.24355C3.8664 9.78409 4.20692 10.2022 4.20692 10.7043C4.20692 11.2065 3.8664 11.6225 3.24355 11.6225ZM5.69184 12.5513H4.52589V9.78409H5.68753C6.55823 9.78409 7.18539 10.3078 7.18539 11.1656C7.18539 12.0233 6.55823 12.5513 5.69184 12.5513ZM9.57117 10.4048H8.25651V10.8358H9.54316V11.4587H8.25651V12.5492H7.54315V9.78193H9.57333V10.4048H9.57117Z"
+                                                fill="#D62E2E" />
+                                            <path
+                                                d="M5.69087 10.4062H5.23828V11.93H5.68656C6.17148 11.93 6.45381 11.5765 6.45381 11.167C6.45381 10.7575 6.19734 10.4084 5.69087 10.4084V10.4062Z"
+                                                fill="#D62E2E" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2368">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <div class="data-table__cell data-table__cell--status">
                                     <div class="status-wrapper">
                                         <span class="status-badge status-badge--prospect">PROSPECT</span>
-                                        <button class="btn-edit-status">
-
-                                        </button>
+                                        <button class="btn-edit-status"></button>
                                     </div>
                                 </div>
                                 <div class="data-table__cell data-table__cell--actions">
                                     <div class="custom-dropdown action-dropdown">
-                                        <button
-                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <button class="btn-actions dropdown-trigger">
+                                            <span></span><span></span><span></span>
+                                        </button>
                                         <div class="dropdown-menu">
-                                            <div class="dropdown-option" data-action="edit"><span
-                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option" data-action="edit">
+                                                <span class="option-text">Edit</span>
+                                            </div>
                                             <div class="dropdown-option dropdown-option--delete" data-action="delete">
                                                 <span class="option-text">Delete</span>
                                             </div>
@@ -285,32 +542,65 @@
                             <div class="data-table__row" data-id="dtl_105">
                                 <div class="data-table__cell data-table__cell--checkbox">
                                     <div class="checkbox-item row-checkbox">
-                                        <input type="checkbox" class="checkbox-item__input">
+                                        <input type="checkbox" class="checkbox-item__input" />
                                     </div>
                                 </div>
-                                <div class="data-table__cell">Apex Financial Group</div>
-                                <div class="data-table__cell">James Walker</div>
-                                <div class="data-table__cell"><a
-                                        href="mailto:james.walker@apexfin.com">james.walker@apexfin.com</a></div>
-                                <div class="data-table__cell">+1 (213) 555-0284</div>
+                                <div class="data-table__cell">
+                                    Apex Financial Group
+                                </div>
+                                <div class="data-table__cell">
+                                    James Walker
+                                </div>
+                                <div class="data-table__cell">
+                                    <a href="mailto:james.walker@apexfin.com">james.walker@apexfin.com</a>
+                                </div>
+                                <div class="data-table__cell">
+                                    +1 (213) 555-0284
+                                </div>
                                 <div class="data-table__cell">$429,000</div>
                                 <div class="data-table__cell">123</div>
                                 <div class="data-table__cell">11M, 8D</div>
+                                <div class="data-table__cell data-table__cell--files">
+                                    <svg width="16" height="17" viewBox="0 0 16 17" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip0_1403_2368)">
+                                            <path
+                                                d="M1.82031 8.50234V0.519531H10.8936L14.5919 4.32774V16.3795H1.82031V13.7373"
+                                                stroke="#A2A2A2" stroke-miterlimit="10" />
+                                            <path d="M10.8906 0.519531V4.27817L14.5889 4.32774" stroke="#A2A2A2"
+                                                stroke-miterlimit="10" />
+                                            <path
+                                                d="M3.1479 10.4045H2.57031V10.9972H3.1479C3.33971 10.9972 3.4798 10.8894 3.4798 10.7019C3.4798 10.5144 3.33971 10.4023 3.1479 10.4023V10.4045Z"
+                                                fill="#D62E2E" />
+                                            <path
+                                                d="M0 8.50391V13.741H11.6854V8.50391H0ZM3.24355 11.6225H2.57114V12.5513H1.85777V9.78409H3.24355C3.8664 9.78409 4.20692 10.2022 4.20692 10.7043C4.20692 11.2065 3.8664 11.6225 3.24355 11.6225ZM5.69184 12.5513H4.52589V9.78409H5.68753C6.55823 9.78409 7.18539 10.3078 7.18539 11.1656C7.18539 12.0233 6.55823 12.5513 5.69184 12.5513ZM9.57117 10.4048H8.25651V10.8358H9.54316V11.4587H8.25651V12.5492H7.54315V9.78193H9.57333V10.4048H9.57117Z"
+                                                fill="#D62E2E" />
+                                            <path
+                                                d="M5.69087 10.4062H5.23828V11.93H5.68656C6.17148 11.93 6.45381 11.5765 6.45381 11.167C6.45381 10.7575 6.19734 10.4084 5.69087 10.4084V10.4062Z"
+                                                fill="#D62E2E" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip0_1403_2368">
+                                                <rect width="15.11" height="16.8988" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </div>
                                 <div class="data-table__cell data-table__cell--status">
                                     <div class="status-wrapper">
                                         <span class="status-badge status-badge--funded">FUNDED</span>
-                                        <button class="btn-edit-status">
-
-                                        </button>
+                                        <button class="btn-edit-status"></button>
                                     </div>
                                 </div>
                                 <div class="data-table__cell data-table__cell--actions">
                                     <div class="custom-dropdown action-dropdown">
-                                        <button
-                                            class="btn-actions dropdown-trigger"><span></span><span></span><span></span></button>
+                                        <button class="btn-actions dropdown-trigger">
+                                            <span></span><span></span><span></span>
+                                        </button>
                                         <div class="dropdown-menu">
-                                            <div class="dropdown-option" data-action="edit"><span
-                                                    class="option-text">Edit</span></div>
+                                            <div class="dropdown-option" data-action="edit">
+                                                <span class="option-text">Edit</span>
+                                            </div>
                                             <div class="dropdown-option dropdown-option--delete" data-action="delete">
                                                 <span class="option-text">Delete</span>
                                             </div>
@@ -321,39 +611,44 @@
 
                             <div class="data-table__row data-table__row--total">
                                 <div class="data-table__cell">Total</div>
-                                <div class="data-table__cell">$2,231,312.00</div>
+                                <div class="data-table__cell">
+                                    $2,231,312.00
+                                </div>
                             </div>
-
                         </div>
                     </div>
                     <div class="orders__wrapper-bottom">
-                        <button class="btn" id="btnExport" disabled style="opacity: 0.5; cursor: not-allowed;">
-                            Export
-                        </button>
+                        <div class="export-btn-wrapper">
+                            <button class="btn" id="btnExport" disabled style="opacity: 0.5; cursor: not-allowed">
+                                Export
+                            </button>
+                            <div class="custom-tooltip">Export to CSV</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
-
     </div>
 
     <div class="status-modal" id="statusModal">
         <div class="status-modal__window">
             <div class="status-modal__header">
                 <h3 class="status-modal__title">Edit Status</h3>
-                <button class="status-modal__close" id="modalCloseX">&times;</button>
+                <button class="status-modal__close" id="modalCloseX">
+                    &times;
+                </button>
             </div>
 
             <div class="status-modal__body">
                 <label class="status-modal__label">Select New Status</label>
 
                 <div class="custom-dropdown modal-dropdown" id="modalStatusDropdown">
-                    <button class="dropdown-trigger" style="width: 100%; justify-content: space-between;">
+                    <button class="dropdown-trigger" style="width: 100%; justify-content: space-between">
                         <span class="dropdown-text">Select Status</span>
-                        <img src="../../assets/img/icons/chevron-down.svg" alt="" class="dropdown-chevron">
+                        <img src="../../assets/img/icons/chevron-down.svg" alt="" class="dropdown-chevron" />
                     </button>
 
-                    <div class="dropdown-menu" style="width: 100%;">
+                    <div class="dropdown-menu" style="width: 100%">
                         <div class="dropdown-option" data-value="PROSPECT">
                             <div class="option-checkbox"></div>
                             <span class="option-text">PROSPECT</span>
@@ -371,8 +666,12 @@
             </div>
 
             <div class="status-modal__footer">
-                <button class="status-modal__btn status-modal__btn--cancel" id="modalCancel">Cancel</button>
-                <button class="status-modal__btn status-modal__btn--save" id="modalSave">Save</button>
+                <button class="status-modal__btn status-modal__btn--cancel" id="modalCancel">
+                    Cancel
+                </button>
+                <button class="status-modal__btn status-modal__btn--save" id="modalSave">
+                    Save
+                </button>
             </div>
         </div>
     </div>
@@ -381,85 +680,134 @@
     <script src="../../assets/js/ui.js"></script>
     <script src="script.js"></script>
 
-    <div id="demo-nav" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: sans-serif;">
-
+    <div id="demo-nav" style="
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 9999;
+                font-family: sans-serif;
+            ">
         <button id="demo-nav-btn" style="
-        width: 50px; 
-        height: 50px; 
-        border-radius: 50%; 
-        background: #232323; 
-        color: #fff; 
-        border: none; 
-        cursor: pointer; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 24px;
-        transition: transform 0.2s;
-    ">
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    background: #232323;
+                    color: #fff;
+                    border: none;
+                    cursor: pointer;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 24px;
+                    transition: transform 0.2s;
+                ">
             ☰
         </button>
 
         <div id="demo-nav-list" style="
-        position: absolute; 
-        bottom: 60px; 
-        right: 0; 
-        background: #fff; 
-        border: 1px solid #ddd; 
-        border-radius: 8px; 
-        padding: 10px; 
-        box-shadow: 0 5px 20px rgba(0,0,0,0.15); 
-        width: 200px; 
-        display: none; 
-        flex-direction: column; 
-        gap: 8px;
-    ">
-            <h4 style="margin: 0 0 8px 0; font-size: 12px; color: #888; text-transform: uppercase;">All Pages</h4>
+                    position: absolute;
+                    bottom: 60px;
+                    right: 0;
+                    background: #fff;
+                    border: 1px solid #ddd;
+                    border-radius: 8px;
+                    padding: 10px;
+                    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+                    width: 200px;
+                    display: none;
+                    flex-direction: column;
+                    gap: 8px;
+                ">
+            <h4 style="
+                        margin: 0 0 8px 0;
+                        font-size: 12px;
+                        color: #888;
+                        text-transform: uppercase;
+                    ">
+                All Pages
+            </h4>
 
-            <a href="/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🏠
-                Dashboard</a>
-            <a href="/pages/orders/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📋
-                Orders</a>
-            <a href="/pages/order-details/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">📄
-                Order Details</a>
-            <a href="/pages/lead-marketplace/index.html"
-                style="text-decoration: none; color: #232323; font-size: 14px; padding: 5px; border-radius: 4px; transition: background 0.2s;">🛒
-                Marketplace</a>
+            <a href="/index.html" style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    ">🏠 Dashboard</a>
+            <a href="/pages/orders/index.html" style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    ">📋 Orders</a>
+            <a href="/pages/order-details/index.html" style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    ">📄 Order Details</a>
+            <a href="/pages/lead-marketplace/index.html" style="
+                        text-decoration: none;
+                        color: #232323;
+                        font-size: 14px;
+                        padding: 5px;
+                        border-radius: 4px;
+                        transition: background 0.2s;
+                    ">🛒 Marketplace</a>
         </div>
 
         <script>
             (function () {
-                const btn = document.getElementById('demo-nav-btn');
-                const list = document.getElementById('demo-nav-list');
-                const links = list.querySelectorAll('a');
+                const btn = document.getElementById("demo-nav-btn");
+                const list = document.getElementById("demo-nav-list");
+                const links = list.querySelectorAll("a");
 
                 // 1. Toggle visibility
-                btn.addEventListener('click', (e) => {
+                btn.addEventListener("click", (e) => {
                     e.stopPropagation(); // Prevent immediate closing
-                    const isHidden = list.style.display === 'none' || list.style.display === '';
-                    list.style.display = isHidden ? 'flex' : 'none';
-                    btn.innerHTML = isHidden ? '✕' : '☰';
+                    const isHidden =
+                        list.style.display === "none" ||
+                        list.style.display === "";
+                    list.style.display = isHidden ? "flex" : "none";
+                    btn.innerHTML = isHidden ? "✕" : "☰";
                 });
 
                 // 2. Hover effects for links (inline styles workaround)
-                links.forEach(link => {
-                    link.addEventListener('mouseenter', () => link.style.background = '#f0f0f0');
-                    link.addEventListener('mouseleave', () => link.style.background = 'transparent');
+                links.forEach((link) => {
+                    link.addEventListener(
+                        "mouseenter",
+                        () => (link.style.background = "#f0f0f0"),
+                    );
+                    link.addEventListener(
+                        "mouseleave",
+                        () => (link.style.background = "transparent"),
+                    );
 
                     // Highlight current page
-                    if (window.location.pathname === link.getAttribute('href')) {
-                        link.style.background = '#e0ffe0';
-                        link.style.fontWeight = 'bold';
+                    if (
+                        window.location.pathname ===
+                        link.getAttribute("href")
+                    ) {
+                        link.style.background = "#e0ffe0";
+                        link.style.fontWeight = "bold";
                     }
                 });
 
                 // 3. Close when clicking outside
-                document.addEventListener('click', (e) => {
-                    if (!document.getElementById('demo-nav').contains(e.target)) {
-                        list.style.display = 'none';
-                        btn.innerHTML = '☰';
+                document.addEventListener("click", (e) => {
+                    if (
+                        !document
+                            .getElementById("demo-nav")
+                            .contains(e.target)
+                    ) {
+                        list.style.display = "none";
+                        btn.innerHTML = "☰";
                     }
                 });
 

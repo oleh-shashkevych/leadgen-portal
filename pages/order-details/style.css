@@ -4,7 +4,16 @@
 /* Checkbox | Bus. Name | Merch. Name | Email | Phone | Revenue | FICO | TIB | Status | Action */
 .data-table__header,
 .data-table__row {
-    grid-template-columns: 35px 1fr 1fr 1.5fr 1fr .8fr 60px 100px 100px 70px;
+    grid-template-columns: 35px 1fr 1fr 1.5fr 1fr 0.8fr 60px 100px 80px 100px 70px;
+}
+
+.data-table__cell--files svg {
+    width: 16px;
+}
+
+.data-table__cell--files svg:not(:last-child) {
+    width: 16px;
+    margin-inline-end: 7px;
 }
 
 .orders__wrapper {
@@ -25,14 +34,14 @@
 }
 
 .orders__wrapper-top .search-input {
-    background-color: #F7FAF7;
+    background-color: #f7faf7;
     padding-left: 35px;
     font-size: 15px;
     font-weight: 500;
 }
 
 .orders__wrapper-top .search-input::placeholder {
-    color: #6B7B6F;
+    color: #6b7b6f;
 }
 
 .orders__wrapper-top .search-icon {
@@ -53,15 +62,60 @@
     padding: 12px;
 }
 
+.export-btn-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-tooltip {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(5px);
+
+    background-color: #232323;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease-in-out;
+    pointer-events: none;
+    z-index: 10;
+
+    margin-top: 10px;
+}
+
+.custom-tooltip::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #232323 transparent;
+}
+
+.export-btn-wrapper:hover button:not(:disabled)+.custom-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
 #btnExport {
     font-weight: 500;
     font-size: 14px;
     line-height: 14px;
     text-align: center;
-    color: #232323BF;
+    color: #232323bf;
     padding: 10px 14px;
     border-radius: 3px;
-    border: 1px solid #D2DAD2;
+    border: 1px solid #d2dad2;
     background-color: var(--color-white);
 }
 
@@ -90,7 +144,7 @@
 }
 
 .dropdown-option--delete .option-text {
-    color: #FF3C00;
+    color: #ff3c00;
 }
 
 .modal-dropdown .dropdown-text {
@@ -99,4 +153,89 @@
 
 .modal-dropdown .option-checkbox {
     display: none;
+}
+
+.campaign-button {
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    background-color: var(--color-green-main);
+    color: #fff;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    transition: all .3s ease;
+}
+
+.campaign-button:hover {
+    background-color: var(--color-green-dark);
+}
+
+/* === METRICS GRID === */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    column-gap: 14px;
+    row-gap: 10px;
+    margin-bottom: 24px;
+
+}
+
+.metric-card {
+    padding: 19px 17px;
+    border-radius: 3px;
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.metric-card__title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    margin-bottom: 8px;
+
+}
+
+.metric-card__value {
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 100%;
+    text-transform: uppercase;
+}
+
+/* === ЦВЕТА КАРТОЧЕК === */
+
+.metric-card:nth-child(4n + 1) {
+    background-color: #159C2A;
+}
+
+.metric-card:nth-child(4n + 2) {
+    background-color: #00A488;
+}
+
+.metric-card:nth-child(4n + 3) {
+    background-color: #6BA31D;
+}
+
+.metric-card:nth-child(4n + 4) {
+    background-color: #14AAC7;
+}
+
+@media (max-width: 768px) {
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
 }

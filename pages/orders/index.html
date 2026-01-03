@@ -230,6 +230,42 @@
                     </div>
                 </div>
 
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-card__title">Total sales</div>
+                        <div class="metric-card__value">5,4M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Win rate</div>
+                        <div class="metric-card__value">16,90%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Close rate</div>
+                        <div class="metric-card__value">14,33%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Avg days to close</div>
+                        <div class="metric-card__value">60.70</div>
+                    </div>
+
+                    <div class="metric-card">
+                        <div class="metric-card__title">Pipeline Value</div>
+                        <div class="metric-card__value">75,1M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Open Deals</div>
+                        <div class="metric-card__value">1,6K</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Weighted Value</div>
+                        <div class="metric-card__value">35.7M</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-card__title">Avg Open Deal Age</div>
+                        <div class="metric-card__value">200.64</div>
+                    </div>
+                </div>
+
                 <div class="orders__wrapper">
                     <div class="orders__wrapper-top">
                         <div class="search-wrapper">
@@ -237,6 +273,22 @@
                                 style="--icon-url: url('/../../assets/img/icons/search.svg');"></span>
                             <input type="text" placeholder="Search" class="search-input">
                         </div>
+                        <button type="button" class="campaign-button">
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_1532_1655)">
+                                    <path
+                                        d="M15 5.99093H8.50571V-0.5H6.49093V5.99093H0V8.00571H6.49093V14.5H8.50571V8.00571H15V5.99093Z"
+                                        fill="white" />
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_1532_1655">
+                                        <rect width="15" height="15" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+                            Create Campaign
+                        </button>
                     </div>
 
                     <div class="data-table">
@@ -357,9 +409,12 @@
                         </div>
                     </div>
                     <div class="orders__wrapper-bottom">
-                        <button class="btn" id="btnExport" disabled style="opacity: 0.5; cursor: not-allowed;">
-                            Export
-                        </button>
+                        <div class="export-btn-wrapper">
+                            <button class="btn" id="btnExport" disabled style="opacity: 0.5; cursor: not-allowed;">
+                                Export
+                            </button>
+                            <div class="custom-tooltip">Export to CSV</div>
+                        </div>
                     </div>
                 </div>
             </div>
