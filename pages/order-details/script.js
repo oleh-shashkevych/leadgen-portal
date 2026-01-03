@@ -1,21 +1,133 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Page Logic Loaded");
+    console.log("Page Logic Loaded (Fixed)");
 
-    // === СПІЛЬНІ ЗМІННІ (Оголошуємо один раз тут) ===
+    // === СПІЛЬНІ ЗМІННІ ===
     const dataTable = document.querySelector(".data-table");
+    const checkAllContainer = document.getElementById("checkAll");
+    const checkAllInput = checkAllContainer ? checkAllContainer.querySelector("input") : null;
+    const tableBody = document.getElementById("tableBody");
+    const btnExport = document.getElementById("btnExport");
+
+    // Total Elements
+    const totalApprovalEl = document.getElementById("totalApproval");
+    const totalRevenueEl = document.getElementById("totalRevenue");
 
     /* =========================================
-       1. CHECKBOXES & EXPORT LOGIC
+       1. HELPER FUNCTIONS & CALCULATIONS
     ========================================= */
-    const checkAllContainer = document.getElementById("checkAll");
-    const checkAllInput = checkAllContainer
-        ? checkAllContainer.querySelector("input")
-        : null;
-    const tableBody = document.getElementById("tableBody");
-    const rowInputs = tableBody
-        ? tableBody.querySelectorAll(".checkbox-item__input")
-        : [];
-    const btnExport = document.getElementById("btnExport");
+
+    function parseMoney(str) {
+        if (!str) return 0;
+        const clean = str.replace(/[^0-9.]/g, "");
+        return parseFloat(clean) || 0;
+    }
+
+    function formatMoney(num, decimals = 2) {
+        return "$" + num.toLocaleString("en-US", {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+        });
+    }
+
+    function calculateTotals() {
+        if (!tableBody || !totalApprovalEl || !totalRevenueEl) return;
+
+        let sumApproval = 0;
+        let sumRevenue = 0;
+
+        const rows = tableBody.querySelectorAll(".data-table__row");
+        rows.forEach(row => {
+            const appCell = row.querySelector('[data-field="approval"]');
+            const revCell = row.querySelector('[data-field="revenue"]');
+
+            if (appCell) sumApproval += parseMoney(appCell.textContent);
+            if (revCell) sumRevenue += parseMoney(revCell.textContent);
+        });
+
+        totalApprovalEl.textContent = formatMoney(sumApproval, 0);
+        totalRevenueEl.textContent = formatMoney(sumRevenue, 2);
+    }
+
+    // Запускаем подсчет при старте
+    calculateTotals();
+
+    /* =========================================
+       2. INLINE EDITING LOGIC (Approval / Revenue)
+    ========================================= */
+
+    function handleCellClick(e) {
+        const cell = e.target.closest(".editable-cell");
+        if (!cell || cell.querySelector("input")) return;
+
+        const fieldType = cell.getAttribute("data-type");
+        const fieldName = cell.getAttribute("data-field");
+        const rowId = cell.closest(".data-table__row").getAttribute("data-id");
+
+        const currentText = cell.textContent.trim();
+        let rawValue = currentText.replace(/[^0-9.]/g, "");
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.value = rawValue;
+        input.className = "editable-input";
+
+        cell.textContent = "";
+        cell.appendChild(input);
+        input.focus();
+
+        // Валидация ввода
+        input.addEventListener("input", () => {
+            if (fieldType === 'integer') {
+                input.value = input.value.replace(/[^0-9]/g, "");
+            } else {
+                input.value = input.value.replace(/[^0-9.]/g, "");
+                // Запрет второй точки
+                const parts = input.value.split('.');
+                if (parts.length > 2) {
+                    input.value = parts[0] + '.' + parts.slice(1).join('');
+                }
+            }
+        });
+
+        // Функция сохранения
+        const save = () => {
+            let newVal = input.value;
+            let numVal = parseFloat(newVal) || 0;
+
+            let formattedVal = "";
+            if (fieldType === 'integer') {
+                formattedVal = formatMoney(Math.floor(numVal), 0);
+            } else {
+                formattedVal = formatMoney(numVal, 2);
+            }
+
+            cell.textContent = formattedVal;
+
+            console.log("=== DATA UPDATE ===", {
+                id: rowId,
+                field: fieldName,
+                value: numVal
+            });
+
+            calculateTotals();
+        };
+
+        input.addEventListener("blur", save);
+        input.addEventListener("keydown", (ev) => {
+            if (ev.key === "Enter") {
+                input.blur();
+            }
+        });
+    }
+
+    if (dataTable) {
+        dataTable.addEventListener("click", handleCellClick);
+    }
+
+    /* =========================================
+       3. CHECKBOXES & EXPORT LOGIC
+    ========================================= */
+    const rowInputs = tableBody ? tableBody.querySelectorAll(".checkbox-item__input") : [];
 
     function toggleCheckboxVisual(inputElement, isChecked) {
         const wrapper = inputElement.closest(".checkbox-item");
@@ -28,13 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateGlobalState() {
         if (!checkAllInput || !btnExport) return;
-
         const totalRows = rowInputs.length;
-        const checkedRows = Array.from(rowInputs).filter(
-            (input) => input.checked,
-        ).length;
+        const checkedRows = Array.from(rowInputs).filter(i => i.checked).length;
 
-        // Логіка хедера
         if (totalRows > 0 && checkedRows === totalRows) {
             checkAllInput.checked = true;
             checkAllContainer.classList.add("checkbox-item--checked");
@@ -43,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
             checkAllContainer.classList.remove("checkbox-item--checked");
         }
 
-        // Логіка кнопки Export
         if (checkedRows > 0) {
             btnExport.disabled = false;
             btnExport.style.opacity = "1";
@@ -55,7 +162,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Слухач на Check All
     if (checkAllInput) {
         checkAllInput.addEventListener("change", function () {
             const isChecked = this.checked;
@@ -68,7 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Слухачі на рядки
     rowInputs.forEach((input) => {
         input.addEventListener("change", function () {
             toggleCheckboxVisual(this, this.checked);
@@ -76,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Кнопка Export
     if (btnExport) {
         btnExport.addEventListener("click", () => {
             if (btnExport.disabled) return;
@@ -88,33 +192,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (id) selectedIds.push(id);
                 }
             });
-            console.log(
-                "=== EXPORT DATA ===",
-                JSON.stringify(
-                    { count: selectedIds.length, ids: selectedIds },
-                    null,
-                    2,
-                ),
-            );
+            console.log("=== EXPORT DATA ===", JSON.stringify({ count: selectedIds.length, ids: selectedIds }, null, 2));
         });
     }
 
     /* =========================================
-       2. STATUS EDIT MODAL LOGIC (CUSTOM DROPDOWN)
+       4. STATUS EDIT MODAL (OLD LOGIC RESTORED)
     ========================================= */
     const modalOverlay = document.getElementById("statusModal");
     const btnCloseX = document.getElementById("modalCloseX");
     const btnCancel = document.getElementById("modalCancel");
     const btnSave = document.getElementById("modalSave");
 
-    // Селектори для кастомного дропдауна в модалці
+    // Элементы модального дропдауна
     const modalDropdown = document.getElementById("modalStatusDropdown");
-    const dropdownTriggerText = modalDropdown
-        ? modalDropdown.querySelector(".dropdown-text")
-        : null;
-    const dropdownOptions = modalDropdown
-        ? modalDropdown.querySelectorAll(".dropdown-option")
-        : [];
+    const modalDropdownTrigger = modalDropdown ? modalDropdown.querySelector(".dropdown-trigger") : null;
+    const modalDropdownOptions = modalDropdown ? modalDropdown.querySelectorAll(".dropdown-option") : [];
+    const modalDropdownText = modalDropdown ? modalDropdown.querySelector(".dropdown-text") : null;
 
     let currentRow = null;
     let currentBadge = null;
@@ -132,35 +226,24 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal(row) {
         currentRow = row;
         currentBadge = row.querySelector(".status-badge");
-
         currentRow.classList.add("row-highlight");
         modalOverlay.classList.add("status-modal--open");
 
         if (currentBadge && modalDropdown) {
             const currentStatusText = currentBadge.textContent.trim();
+            if (modalDropdownText) modalDropdownText.textContent = currentStatusText;
 
-            // 1. Оновлюємо текст на кнопці дропдауна
-            if (dropdownTriggerText) {
-                dropdownTriggerText.textContent = currentStatusText;
-            }
-
-            // 2. Візуально виділяємо опцію в списку
-            dropdownOptions.forEach((opt) => {
+            modalDropdownOptions.forEach((opt) => {
                 const val = opt.getAttribute("data-value");
-                if (val === currentStatusText) {
-                    opt.classList.add("selected");
-                } else {
-                    opt.classList.remove("selected");
-                }
+                if (val === currentStatusText) opt.classList.add("selected");
+                else opt.classList.remove("selected");
             });
         }
     }
 
     function closeModal() {
         if (modalOverlay) modalOverlay.classList.remove("status-modal--open");
-        // Закриваємо дропдаун, якщо він залишився відкритим
         if (modalDropdown) modalDropdown.classList.remove("open");
-
         if (currentRow) {
             currentRow.classList.remove("row-highlight");
             currentRow = null;
@@ -170,56 +253,56 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saveStatus() {
         if (!currentRow || !currentBadge || !modalDropdown) return;
+        const selectedOption = modalDropdown.querySelector(".dropdown-option.selected");
+        // Если опция выбрана, берем её, иначе оставляем старый текст
+        let newStatus = selectedOption ? selectedOption.getAttribute("data-value") : modalDropdownText.textContent.trim();
 
-        // Знаходимо вибрану опцію (клас .selected додає ui.js)
-        const selectedOption = modalDropdown.querySelector(
-            ".dropdown-option.selected",
-        );
-
-        let newStatus = "";
-
-        if (selectedOption) {
-            newStatus = selectedOption.getAttribute("data-value");
-        } else {
-            // Фолбек: якщо не клікали, беремо поточний текст
-            newStatus = dropdownTriggerText.textContent.trim();
-        }
-
-        // 1. Оновлюємо текст
         currentBadge.textContent = newStatus;
-
-        // 2. Оновлюємо колір
-        Object.values(statusClasses).forEach((cls) => {
-            currentBadge.classList.remove(cls);
-        });
-
+        Object.values(statusClasses).forEach((cls) => currentBadge.classList.remove(cls));
         const newClass = statusClasses[newStatus];
-        if (newClass) {
-            currentBadge.classList.add(newClass);
-        }
+        if (newClass) currentBadge.classList.add(newClass);
 
         closeModal();
     }
 
-    // Слухачі кнопок модалки
+    // Слушатели модального окна
     if (btnCloseX) btnCloseX.addEventListener("click", closeModal);
     if (btnCancel) btnCancel.addEventListener("click", closeModal);
-    if (btnSave) {
-        btnSave.addEventListener("click", () => {
-            saveStatus();
+    if (btnSave) btnSave.addEventListener("click", saveStatus);
+
+    // === ЛОГИКА ДРОПДАУНА В МОДАЛКЕ (FIX) ===
+    if (modalDropdownTrigger) {
+        modalDropdownTrigger.addEventListener("click", (e) => {
+            e.stopPropagation();
+            modalDropdown.classList.toggle("open");
         });
     }
 
-    /* =========================================
-       3. ACTIONS DROPDOWN & TABLE CLICKS
-       (Делегування подій)
-    ========================================= */
+    modalDropdownOptions.forEach(opt => {
+        opt.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // Убираем selected у других
+            modalDropdownOptions.forEach(o => o.classList.remove("selected"));
+            // Ставим текущему
+            opt.classList.add("selected");
+            // Обновляем текст триггера
+            if (modalDropdownText) {
+                modalDropdownText.textContent = opt.getAttribute("data-value");
+            }
+            // Закрываем
+            modalDropdown.classList.remove("open");
+        });
+    });
 
+
+    /* =========================================
+       5. ACTIONS DROPDOWN & TABLE CLICKS
+    ========================================= */
     if (dataTable) {
         dataTable.addEventListener("click", (e) => {
             const target = e.target;
 
-            // --- A. Клік по кнопці редагування статусу (Олівець) ---
+            // 1. Клик по карандашу (открыть модалку)
             const editBtn = target.closest(".btn-edit-status");
             if (editBtn) {
                 e.stopPropagation();
@@ -228,55 +311,48 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // --- B. Клік по трикрапці (Дропдаун Actions) ---
+            // 2. Клик по триггеру Action Dropdown
             const trigger = target.closest(".btn-actions");
             if (trigger) {
                 e.stopPropagation();
                 const dropdown = trigger.closest(".custom-dropdown");
-
-                // Закрити інші відкриті дропдауни
-                document
-                    .querySelectorAll(".action-dropdown.open")
-                    .forEach((d) => {
-                        if (d !== dropdown) d.classList.remove("open");
-                    });
-
+                // Закрываем другие открытые экшены
+                document.querySelectorAll(".action-dropdown.open").forEach((d) => {
+                    if (d !== dropdown) d.classList.remove("open");
+                });
                 dropdown.classList.toggle("open");
                 return;
             }
 
-            // --- C. Клік по пункту меню (Edit/Delete) ---
+            // 3. Клик по опциям Action (Edit/Delete)
             const option = target.closest(".dropdown-option");
-            if (option) {
+            // Важно: проверяем, что это не опция внутри модального окна
+            if (option && !option.closest("#modalStatusDropdown")) {
                 const action = option.getAttribute("data-action");
                 const row = option.closest(".data-table__row");
                 const rowId = row.getAttribute("data-id");
 
-                // Закриваємо меню
                 const dropdown = option.closest(".custom-dropdown");
-                dropdown.classList.remove("open");
+                if (dropdown) dropdown.classList.remove("open");
 
-                console.log(
-                    `Action: ${action.toUpperCase()} on Row ID: ${rowId}`,
-                );
-
-                if (action === "edit") {
-                    // Тут логіка для Edit з меню Actions
-                    // openModal(row);
-                } else if (action === "delete") {
-                    // Тут логіка для Delete
-                    // row.remove();
+                console.log(`Action: ${action.toUpperCase()} on Row ID: ${rowId}`);
+                if (action === "delete") {
+                    row.remove();
+                    calculateTotals();
                 }
             }
         });
     }
 
-    // Закриття дропдаунів при кліку будь-де поза ними
+    // Закрытие всех дропдаунов при клике вне
     document.addEventListener("click", (e) => {
+        // Закрываем Actions dropdowns
         if (!e.target.closest(".action-dropdown")) {
-            document.querySelectorAll(".action-dropdown.open").forEach((d) => {
-                d.classList.remove("open");
-            });
+            document.querySelectorAll(".action-dropdown.open").forEach((d) => d.classList.remove("open"));
+        }
+        // Закрываем Modal Status dropdown
+        if (modalDropdown && !e.target.closest("#modalStatusDropdown")) {
+            modalDropdown.classList.remove("open");
         }
     });
 });

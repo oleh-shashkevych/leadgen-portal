@@ -1,10 +1,29 @@
 /* Локальні стилі для сторінки Order Details */
+.data-table__wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    min-width: 0;
+    max-width: calc(100vw - 230px - 75px);
+    transition: all .3s ease;
+}
 
-/* Більше колонок, тому інший Grid */
-/* Checkbox | Bus. Name | Merch. Name | Email | Phone | Revenue | FICO | TIB | Status | Action */
+.sidebar.collapsed~main .data-table__wrapper {
+    max-width: calc(100vw - 60px - 75px);
+}
+
+.data-table {
+    min-width: 1400px;
+    width: 100%;
+}
+
 .data-table__header,
 .data-table__row {
-    grid-template-columns: 35px 1fr 1fr 1.5fr 1fr 0.8fr 60px 100px 80px 100px 70px;
+    display: grid;
+    /* Збільшено кількість колонок, відкориговано ширину */
+    grid-template-columns: 35px 1fr 0.9fr 1fr 1.2fr 130px 0.8fr 60px 80px 60px 100px 100px 100px 70px;
+    gap: 10px;
+    align-items: center;
 }
 
 .data-table__cell--files svg {
@@ -49,13 +68,44 @@
     left: 12px;
 }
 
-.data-table__row--total .data-table__cell:first-child {
-    grid-column: span 5;
-    font-weight: 600;
+/* TOTAL ROW STYLING UPDATE */
+.data-table__row--total {
+    background-color: #f9f9f9;
+    font-weight: 700;
 }
 
-.data-table__row--total .data-table__cell:nth-child(2) {
-    font-weight: 700;
+.data-table__row--total .data-table__cell:first-child {
+    /* Розтягуємо слово Total до колонки Approval */
+    grid-column: 1 / 12;
+    text-align: right;
+    padding-right: 20px;
+    color: #232323;
+}
+
+/* Стилі для клітинок, що редагуються */
+.editable-cell {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 4px 10px;
+    transition: all 0.2s;
+}
+
+.editable-cell:hover {
+    background-color: #f0f8f0;
+    border-color: #d2dad2;
+}
+
+.editable-input {
+    width: 100%;
+    padding: 4px;
+    border: none;
+    background-color: transparent;
+    border-radius: 3px;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    box-shadow: none;
 }
 
 .orders__wrapper-bottom {
@@ -72,7 +122,6 @@
     top: 100%;
     left: 50%;
     transform: translateX(-50%) translateY(5px);
-
     background-color: #232323;
     color: #ffffff;
     font-size: 12px;
@@ -80,13 +129,11 @@
     padding: 4px 8px;
     border-radius: 4px;
     white-space: nowrap;
-
     opacity: 0;
     visibility: hidden;
     transition: all 0.2s ease-in-out;
     pointer-events: none;
     z-index: 10;
-
     margin-top: 10px;
 }
 
@@ -121,6 +168,7 @@
 
 .action-dropdown .dropdown-menu {
     padding: 0;
+    right: 0;
 }
 
 .dropdown-option {
@@ -179,11 +227,9 @@
 .metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-
     column-gap: 14px;
     row-gap: 10px;
     margin-bottom: 24px;
-
 }
 
 .metric-card {
@@ -200,7 +246,6 @@
     font-size: 14px;
     line-height: 100%;
     margin-bottom: 8px;
-
 }
 
 .metric-card__value {
@@ -211,7 +256,6 @@
 }
 
 /* === ЦВЕТА КАРТОЧЕК === */
-
 .metric-card:nth-child(4n + 1) {
     background-color: #159C2A;
 }

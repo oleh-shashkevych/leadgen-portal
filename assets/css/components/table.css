@@ -45,9 +45,8 @@
     padding: 0 10px;
     display: flex;
     align-items: center;
-    overflow: hidden;
-    text-overflow: ellipsis;
     min-height: 44px;
+    word-break: break-word;
 }
 
 .data-table__cell--status {
