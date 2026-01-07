@@ -404,12 +404,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 },
                 cutout: '50%',
                 // Анимация будет срабатывать, так как мы создаем чарт с нуля
-                animation: {
-                    animateScale: true,
-                    animateRotate: true,
-                    duration: 1500, // 1.5 секунды анимации
-                    easing: 'easeOutQuart'
-                }
+                animation: false
             },
             plugins: [outsideLabelsPlugin]
         };
