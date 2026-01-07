@@ -353,8 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderUsersCharts() {
         const container = document.getElementById('usersChartContainer');
 
-        // 1. ОЧИСТКА: Если графики уже есть, уничтожаем их экземпляры Chart.js
-        // Это важно, чтобы не забивать память и позволить анимации сыграть снова
+        // 1. ОЧИСТКА
         if (usersChartsInstances.length > 0) {
             usersChartsInstances.forEach(chartInstance => {
                 chartInstance.destroy();
@@ -362,10 +361,10 @@ document.addEventListener('DOMContentLoaded', () => {
             usersChartsInstances = [];
         }
 
-        // 2. Обнуляем HTML контейнера, чтобы создать canvas заново
+        // 2. Обнулення HTML
         container.innerHTML = '';
 
-        // 3. Создаем HTML разметку заново
+        // 3. Створення розмітки
         container.innerHTML = `
             <div class="users-chart__wrapper">
                 <div class="users-chart__item"><canvas id="userChart1"></canvas></div>
@@ -403,13 +402,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     outsideLabels: true
                 },
                 cutout: '50%',
-                // Анимация будет срабатывать, так как мы создаем чарт с нуля
+                // --- ЗМІНА 1: Вимикаємо анімацію ---
                 animation: false
             },
             plugins: [outsideLabelsPlugin]
         };
 
-        // Создаем новые экземпляры и сохраняем их в массив
+        // Створюємо нові екземпляри
         usersChartsInstances.push(new Chart(ctx1, config));
 
         const config2 = JSON.parse(JSON.stringify(config));
@@ -652,7 +651,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnTable = document.getElementById('toggleTableChart');
 
     function switchView(view) {
-        // Hide all
+        if (view === 'line' && btnLine.classList.contains('approval__switch-btn--active')) {
+            return;
+        }
+        if (view === 'users' && btnUsers.classList.contains('approval__switch-btn--active')) {
+            return;
+        }
+        if (view === 'table' && btnTable.classList.contains('approval__switch-btn--active')) {
+            return;
+        }
+
+        // Hide all logic...
         [lineView, usersView, tableView].forEach(el => el.classList.add('hidden'));
         [btnLine, btnUsers, btnTable].forEach(el => el.classList.remove('approval__switch-btn--active'));
 
@@ -666,8 +675,6 @@ document.addEventListener('DOMContentLoaded', () => {
             usersView.classList.remove('hidden');
             btnUsers.classList.add('approval__switch-btn--active');
 
-            // ВАЖНО: Мы больше не проверяем, пустой ли контейнер.
-            // Мы просто вызываем функцию рендера, которая сама всё очистит и перезапустит анимацию.
             setTimeout(() => {
                 renderUsersCharts();
             }, 50);
